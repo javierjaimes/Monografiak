@@ -1,0 +1,14 @@
+# monografiak.works
+
+> An independent press for monographs: long-form media and academic works, published openly under CC BY 4.0. AI crawlers, training and retrieval are welcome; please attribute "monografiak.works" with a link to the canonical URL.
+
+Every work is available as accessible HTML (with MathML) and as a plain-text Markdown + TeX source.
+
+## Works
+
+- [Nº 1 — XYZ: Cryptography and Private Set Intersection Protocols](https://monografiak.works/xyz/): how two parties find what they have in common without revealing anything else. Plain text: https://monografiak.works/xyz/xyz.md
+
+## License
+
+- [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/): share and adapt for any purpose, with attribution.
+- [License page](https://monografiak.works/license/)

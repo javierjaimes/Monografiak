@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XYZ — Cryptography and Private Set Intersection Protocols · monografiak.works</title>
+<meta name="description" content="Monografiak Nº 1. A media publication on cryptography and private set intersection (PSI): how two parties find what they have in common without revealing anything else.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://monografiak.works/xyz/">
+<link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+<link rel="alternate" type="text/markdown" href="/xyz/xyz.md" title="Plain-text source (Markdown + TeX)">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+
+<!-- Scholarly metadata (Google Scholar / Highwire) -->
+<meta name="citation_title" content="XYZ: Cryptography and Private Set Intersection Protocols">
+<meta name="citation_author" content="Monografiak">
+<meta name="citation_publication_date" content="2026/10/10">
+<meta name="citation_journal_title" content="monografiak.works">
+<meta name="citation_issue" content="1">
+<meta name="citation_language" content="en">
+<meta name="citation_public_url" content="https://monografiak.works/xyz/">
+<!-- Dublin Core -->
+<meta name="dc.title" content="XYZ: Cryptography and Private Set Intersection Protocols">
+<meta name="dc.publisher" content="monografiak.works">
+<meta name="dc.date" content="2026-10-10">
+<meta name="dc.rights" content="CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/">
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="XYZ — Cryptography and Private Set Intersection Protocols">
+<meta property="og:description" content="How two parties find what they have in common without revealing anything else.">
+<meta property="og:url" content="https://monografiak.works/xyz/">
+<meta property="og:site_name" content="monografiak.works">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "XYZ: Cryptography and Private Set Intersection Protocols",
+  "alternativeHeadline": "How two parties find what they have in common without revealing anything else",
+  "url": "https://monografiak.works/xyz/",
+  "inLanguage": "en",
+  "datePublished": "2026-10-10",
+  "dateModified": "2026-10-10",
+  "version": "1.0",
+  "position": 1,
+  "author": { "@type": "Organization", "name": "Monografiak", "url": "https://monografiak.works/" },
+  "publisher": { "@type": "Organization", "name": "monografiak.works", "url": "https://monografiak.works/" },
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "isAccessibleForFree": true,
+  "keywords": ["cryptography", "private set intersection", "PSI", "Diffie-Hellman", "oblivious pseudorandom function", "OPRF", "secure multiparty computation", "privacy"],
+  "encoding": { "@type": "MediaObject", "contentUrl": "https://monografiak.works/xyz/xyz.md", "encodingFormat": "text/markdown" },
+  "accessibilityFeature": ["MathML", "alternativeText", "longDescription", "tableOfContents", "structuralNavigation"],
+  "accessibilityHazard": "none",
+  "accessMode": ["textual", "visual"],
+  "accessModeSufficient": ["textual"]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><svg class="mark" aria-hidden="true" width="22" height="22"><use href="/assets/lauburu.svg#lauburu"/></svg>monografiak.works</a>
+    <nav aria-label="Site">
+      <ul>
+        <li><a href="/">Works <span lang="eu" class="eu">Lanak</span></a></li>
+        <li><a href="/license/">License <span lang="eu" class="eu">Lizentzia</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="content">
+<article class="wrap" itemscope itemtype="https://schema.org/ScholarlyArticle">
+
+  <header>
+    <p class="kicker">Monografiak Nº 1 · Cryptography <span lang="eu">· Kriptografia</span></p>
+    <h1 itemprop="headline">XYZ</h1>
+    <p class="subtitle">Cryptography and Private Set Intersection Protocols: how two parties find what they have in common without revealing anything else.</p>
+    <div class="byline">
+      <dl>
+        <dt>Published</dt><dd><time datetime="2026-10-10" itemprop="datePublished">10 October 2026</time></dd>
+        <dt>Version</dt><dd>1.0</dd>
+        <dt>License</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/" rel="license" itemprop="license">CC BY 4.0</a></dd>
+        <dt>Source</dt><dd><a href="/xyz/xyz.md">Plain text (Markdown + TeX)</a></dd>
+      </dl>
+    </div>
+  </header>
+
+  <section class="abstract" aria-labelledby="abstract-h">
+    <h2 id="abstract-h">Abstract <span lang="eu" class="eu">Laburpena</span></h2>
+    <p itemprop="abstract">Private set intersection (<abbr title="private set intersection">PSI</abbr>) lets two parties, each holding a set, learn the elements they share and nothing more. It sits behind contact discovery in messaging apps, leaked-password checks and privacy-preserving advertising measurement. This monograph explains why the obvious approach (comparing hashes) fails, then builds up the three main protocol families: Diffie–Hellman PSI, PSI from oblivious pseudorandom functions, and PSI from homomorphic encryption. It also sets out what these protocols do and do not protect against.</p>
+  </section>
+
+  <nav class="toc" aria-labelledby="toc-h">
+    <h2 id="toc-h">Contents <span lang="eu" class="eu">Aurkibidea</span></h2>
+    <ol>
+      <li><a href="#s1">1. The problem</a></li>
+      <li><a href="#s2">2. Why hashing is not enough</a></li>
+      <li><a href="#s3">3. Preliminaries</a></li>
+      <li><a href="#s4">4. Diffie–Hellman PSI</a></li>
+      <li><a href="#s5">5. PSI from oblivious pseudorandom functions</a></li>
+      <li><a href="#s6">6. PSI from homomorphic encryption</a></li>
+      <li><a href="#s7">7. What PSI does not promise</a></li>
+      <li><a href="#s8">8. Choosing a protocol</a></li>
+      <li><a href="#refs">References</a></li>
+    </ol>
+  </nav>
+
+  <div itemprop="articleBody">
+
+  <section id="s1" aria-labelledby="s1-h">
+    <h2 id="s1-h"><span class="secno">1</span>The problem</h2>
+    <p>Two parties, Alice and Bob, each hold a private set. Alice holds <math><mi>X</mi></math> with <math><mi>n</mi></math> elements and Bob holds <math><mi>Y</mi></math> with <math><mi>m</mi></math> elements. Alice wants to compute</p>
+
+    <div class="eq" id="eq-1">
+      <math display="block">
+        <semantics>
+          <mrow>
+            <mi>X</mi><mo>∩</mo><mi>Y</mi>
+            <mo>=</mo>
+            <mo>{</mo><mi>z</mi><mo>:</mo><mi>z</mi><mo>∈</mo><mi>X</mi><mspace width="0.3em"/><mtext>and</mtext><mspace width="0.3em"/><mi>z</mi><mo>∈</mo><mi>Y</mi><mo>}</mo>
+          </mrow>
+          <annotation encoding="application/x-tex">X \cap Y = \{\, z : z \in X \text{ and } z \in Y \,\}</annotation>
+        </semantics>
+      </math>
+      <span class="eq-num">(1)</span>
+    </div>
+
+    <p>She must learn nothing about the elements of <math><mi>Y</mi></math> outside the intersection, and Bob must learn nothing about <math><mi>X</mi></math> at all. The only things that may leak are the set sizes <math><mi>n</mi></math> and <math><mi>m</mi></math>.</p>
+
+    <p>The problem shows up wherever two organisations or devices need to match records they are not allowed, or not willing, to share:</p>
+    <ul>
+      <li><strong>Contact discovery.</strong> A messaging app wants to tell you which of your contacts already use it without uploading your address book.</li>
+      <li><strong>Compromised credentials.</strong> A browser checks whether your password appears in a breach corpus without disclosing the password.</li>
+      <li><strong>Advertising measurement.</strong> An advertiser and a publisher count how many people who saw an ad later bought the product, without exchanging customer lists.</li>
+      <li><strong>Public health and finance.</strong> Institutions cross-check watch lists or patient registries under strict data-protection rules.</li>
+    </ul>
+  </section>
+
+  <section id="s2" aria-labelledby="s2-h">
+    <h2 id="s2-h"><span class="secno">2</span>Why hashing is not enough</h2>
+    <p>The usual first attempt is for Bob to send <math><mi>H</mi><mo>(</mo><mi>y</mi><mo>)</mo></math> for every <math><mi>y</mi><mo>∈</mo><mi>Y</mi></math>, where <math><mi>H</mi></math> is a cryptographic hash function such as <abbr title="Secure Hash Algorithm 256">SHA-256</abbr>. Alice hashes her own elements and compares. Hashes cannot be inverted, so this looks private.</p>
+
+    <p>It is not. A hash hides its input only when the input is hard to guess. Phone numbers, e-mail addresses and national identifiers come from small, enumerable universes. With a universe <math><mi>U</mi></math>, Alice can recover all of <math><mi>Y</mi></math> by brute force at a cost of</p>
+
+    <div class="eq" id="eq-2">
+      <math display="block">
+        <semantics>
+          <mrow>
+            <mrow><mo>|</mo><mi>U</mi><mo>|</mo></mrow>
+            <mspace width="0.3em"/><mtext>hash evaluations;</mtext><mspace width="1em"/>
+            <mrow><mo>|</mo><mi>U</mi><mo>|</mo></mrow><mo>≈</mo><msup><mn>10</mn><mn>10</mn></msup>
+            <mspace width="0.3em"/><mtext>for phone numbers.</mtext>
+          </mrow>
+          <annotation encoding="application/x-tex">|U| \text{ hash evaluations;}\quad |U| \approx 10^{10} \text{ for phone numbers.}</annotation>
+        </semantics>
+      </math>
+      <span class="eq-num">(2)</span>
+    </div>
+
+    <p>Ten billion SHA-256 evaluations take a few seconds on a single modern <abbr title="graphics processing unit">GPU</abbr>. Salting doesn't help, because both sides need the same salt for the comparison to work. Hashing hides structure. It doesn't hide <em>low-entropy</em> data.</p>
+
+    <aside class="note" aria-label="Note">
+      <p><span class="label">Note.</span> PSI protocols remove the dictionary attack by making the value Alice compares depend on a secret that only Bob holds. Without Bob's participation, Alice cannot test a guess.</p>
+    </aside>
+  </section>
+
+  <section id="s3" aria-labelledby="s3-h">
+    <h2 id="s3-h"><span class="secno">3</span>Preliminaries</h2>
+    <p>Let <math><mi>𝔾</mi></math> be a cyclic group of prime order <math><mi>q</mi></math> with generator <math><mi>g</mi></math>. In practice this is an elliptic-curve group such as ristretto255 or P-256. We also need a hash function <math><mi>H</mi><mo>:</mo><msup><mrow><mo>{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>}</mo></mrow><mo>*</mo></msup><mo>→</mo><mi>𝔾</mi></math> that maps arbitrary strings to group elements. It is standardised as <em>hash-to-curve</em> in <abbr title="Request for Comments">RFC</abbr> 9380 <a href="#ref-rfc9380">[9]</a>.</p>
+
+    <div class="definition" role="note" aria-label="Definition 1">
+      <p><span class="label">Definition 1 (Decisional Diffie–Hellman).</span> For uniformly random <math><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>∈</mo><msub><mi>ℤ</mi><mi>q</mi></msub></math>, no efficient algorithm can distinguish</p>
+      <div class="eq" id="eq-3">
+        <math display="block">
+          <semantics>
+            <mrow>
+              <mo>(</mo><mi>g</mi><mo>,</mo><msup><mi>g</mi><mi>a</mi></msup><mo>,</mo><msup><mi>g</mi><mi>b</mi></msup><mo>,</mo><msup><mi>g</mi><mrow><mi>a</mi><mi>b</mi></mrow></msup><mo>)</mo>
+              <mspace width="0.6em"/><msub><mo>≈</mo><mi>c</mi></msub><mspace width="0.6em"/>
+              <mo>(</mo><mi>g</mi><mo>,</mo><msup><mi>g</mi><mi>a</mi></msup><mo>,</mo><msup><mi>g</mi><mi>b</mi></msup><mo>,</mo><msup><mi>g</mi><mi>c</mi></msup><mo>)</mo>
+            </mrow>
+            <annotation encoding="application/x-tex">(g, g^a, g^b, g^{ab}) \;\approx_c\; (g, g^a, g^b, g^c)</annotation>
+          </semantics>
+        </math>
+        <span class="eq-num">(3)</span>
+      </div>
+      <p>where <math><msub><mo>≈</mo><mi>c</mi></msub></math> denotes computational indistinguishability.</p>
+    </div>
+
+    <p>Security is defined by comparison with an ideal world. In that world a trusted third party receives <math><mi>X</mi></math> and <math><mi>Y</mi></math> and returns <math><mi>X</mi><mo>∩</mo><mi>Y</mi></math> to Alice. A protocol is secure if anything a participant learns from a real run, it could also have computed from its own input and the ideal output. A <em>semi-honest</em> adversary follows the protocol but tries to learn more from the transcript. A <em>malicious</em> adversary may deviate arbitrarily.</p>
+  </section>
+
+  <section id="s4" aria-labelledby="s4-h">
+    <h2 id="s4-h"><span class="secno">4</span>Diffie–Hellman PSI</h2>
+    <p>The oldest PSI protocol traces back to Meadows <a href="#ref-meadows">[1]</a> and to Huberman, Franklin and Hogg <a href="#ref-hfh">[2]</a>. It rests on one algebraic fact: exponentiation in <math><mi>𝔾</mi></math> commutes.</p>
+
+    <div class="eq" id="eq-4">
+      <math display="block">
+        <semantics>
+          <mrow>
+            <msup><mrow><mo>(</mo><mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi>a</mi></msup><mo>)</mo></mrow><mi>b</mi></msup>
+            <mo>=</mo>
+            <mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mrow><mi>a</mi><mi>b</mi></mrow></msup>
+            <mo>=</mo>
+            <msup><mrow><mo>(</mo><mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi>b</mi></msup><mo>)</mo></mrow><mi>a</mi></msup>
+          </mrow>
+          <annotation encoding="application/x-tex">\bigl(H(x)^a\bigr)^b = H(x)^{ab} = \bigl(H(x)^b\bigr)^a</annotation>
+        </semantics>
+      </math>
+      <span class="eq-num">(4)</span>
+    </div>
+
+    <p>Alice picks a secret <math><mi>a</mi></math> and Bob a secret <math><mi>b</mi></math>, both uniform in <math><msub><mi>ℤ</mi><mi>q</mi></msub></math>. An element blinded by both exponents comes out the same whichever order the exponents were applied in. Without the exponents, however, a blinded value looks random. Figure 1 shows the exchange.</p>
+
+    <figure id="fig-1" aria-labelledby="fig-1-cap">
+      <img src="/xyz/figures/dh-psi.svg" width="720" height="400" loading="lazy" decoding="async"
+           alt="Sequence diagram between Alice and Bob in three steps. Step 1: Alice sends H(x) to the a for each x in X. Step 2: Bob returns each value raised to b in the same order, and sends H(y) to the b for each y in Y, shuffled. Step 3: Alice raises Bob's values to a and compares.">
+      <figcaption id="fig-1-cap"><b>Figure 1.</b> Message flow of Diffie–Hellman PSI. Alice sends one message and Bob replies once. The intersection is found locally by Alice in step 3.</figcaption>
+    </figure>
+
+    <ol>
+      <li>Alice sends <math><msub><mi>u</mi><mi>i</mi></msub><mo>=</mo><mi>H</mi><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><msup><mo>)</mo><mi>a</mi></msup></math> for each <math><msub><mi>x</mi><mi>i</mi></msub><mo>∈</mo><mi>X</mi></math>.</li>
+      <li>Bob replies with <math><msubsup><mi>u</mi><mi>i</mi><mi>b</mi></msubsup></math> in the original order, so Alice can tell which value belongs to which <math><msub><mi>x</mi><mi>i</mi></msub></math>. He also sends <math><msub><mi>v</mi><mi>j</mi></msub><mo>=</mo><mi>H</mi><mo>(</mo><msub><mi>y</mi><mi>j</mi></msub><msup><mo>)</mo><mi>b</mi></msup></math> for each <math><msub><mi>y</mi><mi>j</mi></msub><mo>∈</mo><mi>Y</mi></math>, randomly permuted.</li>
+      <li>Alice computes <math><msubsup><mi>v</mi><mi>j</mi><mi>a</mi></msubsup></math>. If <math><msubsup><mi>u</mi><mi>i</mi><mi>b</mi></msubsup><mo>=</mo><msubsup><mi>v</mi><mi>j</mi><mi>a</mi></msubsup></math> for some <math><mi>j</mi></math>, then <math><msub><mi>x</mi><mi>i</mi></msub><mo>∈</mo><mi>X</mi><mo>∩</mo><mi>Y</mi></math>.</li>
+    </ol>
+
+    <p>Each party performs <math><mi>n</mi><mo>+</mo><mi>m</mi></math> exponentiations, and the parties exchange <math><mn>2</mn><mi>n</mi><mo>+</mo><mi>m</mi></math> group elements in total. Against semi-honest adversaries the protocol is secure under the <abbr title="Decisional Diffie–Hellman">DDH</abbr> assumption when <math><mi>H</mi></math> is modelled as a random oracle. Bob sees only values of the form <math><mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi>a</mi></msup></math>, which look random. Alice sees <math><mi>H</mi><mo>(</mo><mi>y</mi><msup><mo>)</mo><mi>b</mi></msup></math> for every <math><mi>y</mi></math>, but she cannot test a guess <math><msup><mi>y</mi><mo>′</mo></msup></math> without knowing <math><mi>b</mi></math>. That closes the dictionary attack from §<a href="#s2">2</a>.</p>
+
+    <p>The protocol fits in a page of code and needs only a standard elliptic-curve library. It still runs in production today, for example in Google's <em>Private Join and Compute</em> <a href="#ref-ion">[7]</a>.</p>
+  </section>
+
+  <section id="s5" aria-labelledby="s5-h">
+    <h2 id="s5-h"><span class="secno">5</span>PSI from oblivious pseudorandom functions</h2>
+    <p>A pseudorandom function <math><msub><mi>F</mi><mi>k</mi></msub></math> is a keyed function whose outputs look random to anyone without <math><mi>k</mi></math>. It is <em>oblivious</em> (an <abbr title="oblivious pseudorandom function">OPRF</abbr>) when two parties evaluate it together, with the following roles:</p>
+
+    <div class="eq" id="eq-5">
+      <math display="block">
+        <semantics>
+          <mrow>
+            <munder>
+              <mrow><mo>(</mo><mi>k</mi><mo>)</mo></mrow>
+              <mtext>Bob</mtext>
+            </munder>
+            <mo>,</mo><mspace width="0.4em"/>
+            <munder>
+              <mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow>
+              <mtext>Alice</mtext>
+            </munder>
+            <mspace width="0.8em"/><mo>⟼</mo><mspace width="0.8em"/>
+            <munder>
+              <mrow><mo>(</mo><mo>⊥</mo><mo>)</mo></mrow>
+              <mtext>Bob</mtext>
+            </munder>
+            <mo>,</mo><mspace width="0.4em"/>
+            <munder>
+              <mrow><mo>(</mo><msub><mi>F</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>)</mo></mrow>
+              <mtext>Alice</mtext>
+            </munder>
+          </mrow>
+          <annotation encoding="application/x-tex">\underset{\text{Bob}}{(k)},\ \underset{\text{Alice}}{(x)} \;\longmapsto\; \underset{\text{Bob}}{(\bot)},\ \underset{\text{Alice}}{(F_k(x))}</annotation>
+        </semantics>
+      </math>
+      <span class="eq-num">(5)</span>
+    </div>
+
+    <p>Bob learns nothing and Alice learns only the output. PSI follows directly. Bob publishes <math><mo>{</mo><msub><mi>F</mi><mi>k</mi></msub><mo>(</mo><mi>y</mi><mo>)</mo><mo>:</mo><mi>y</mi><mo>∈</mo><mi>Y</mi><mo>}</mo></math>. Alice obtains <math><msub><mi>F</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo></math> for each of her elements through the OPRF and checks for membership.</p>
+
+    <p>The Diffie–Hellman construction is itself an OPRF, standardised in RFC 9497 <a href="#ref-rfc9497">[10]</a>:</p>
+
+    <div class="eq" id="eq-6">
+      <math display="block">
+        <semantics>
+          <mrow>
+            <msub><mi>F</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo>
+            <mo>=</mo>
+            <msup><mi>H</mi><mo>′</mo></msup>
+            <mrow><mo>(</mo><mi>x</mi><mo>,</mo><mspace width="0.2em"/><mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi>k</mi></msup><mo>)</mo></mrow>
+          </mrow>
+          <annotation encoding="application/x-tex">F_k(x) = H'\bigl(x,\, H(x)^k\bigr)</annotation>
+        </semantics>
+      </math>
+      <span class="eq-num">(6)</span>
+    </div>
+
+    <p>Alice never reveals <math><mi>x</mi></math>. She sends the blinded value <math><mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi>r</mi></msup></math> for a random <math><mi>r</mi></math>, Bob applies his key to get <math><msup><mrow><mo>(</mo><mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi>r</mi></msup><mo>)</mo></mrow><mi>k</mi></msup></math>, and Alice removes the blind by raising the result to <math><msup><mi>r</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mspace width="0.2em"/><mo>mod</mo><mspace width="0.2em"/><mi>q</mi></math>.</p>
+
+    <p>For very large sets, the fastest protocols avoid public-key operations on each element. Pinkas, Schneider and Zohner <a href="#ref-psz">[4]</a> built PSI from <em>oblivious transfer extension</em>, which turns a small number of public-key operations into millions of cheap symmetric ones. Kolesnikov et al. <a href="#ref-kkrt">[5]</a> recast this as a batched OPRF. Later work based on vector oblivious linear evaluation (<abbr title="vector oblivious linear evaluation">VOLE</abbr>) <a href="#ref-vole">[8]</a> reduces communication further. These protocols intersect sets of millions of elements in seconds on a fast network.</p>
+  </section>
+
+  <section id="s6" aria-labelledby="s6-h">
+    <h2 id="s6-h"><span class="secno">6</span>PSI from homomorphic encryption</h2>
+    <p>Freedman, Nissim and Pinkas <a href="#ref-fnp">[3]</a> encode Alice's set as the roots of a polynomial:</p>
+
+    <div class="eq" id="eq-7">
+      <math display="block">
+        <semantics>
+          <mrow>
+            <mi>P</mi><mo>(</mo><mi>z</mi><mo>)</mo>
+            <mo>=</mo>
+            <munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover>
+            <mo>(</mo><mi>z</mi><mo>−</mo><msub><mi>x</mi><mi>i</mi></msub><mo>)</mo>
+            <mo>=</mo>
+            <munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover>
+            <msub><mi>α</mi><mi>i</mi></msub><msup><mi>z</mi><mi>i</mi></msup>
+          </mrow>
+          <annotation encoding="application/x-tex">P(z) = \prod_{i=1}^{n} (z - x_i) = \sum_{i=0}^{n} \alpha_i z^i</annotation>
+        </semantics>
+      </math>
+      <span class="eq-num">(7)</span>
+    </div>
+
+    <p>Alice encrypts the coefficients <math><msub><mi>α</mi><mi>i</mi></msub></math> under an additively homomorphic scheme such as Paillier and sends them to Bob. Bob can evaluate the encrypted polynomial at his own points without decrypting anything. For each <math><mi>y</mi><mo>∈</mo><mi>Y</mi></math>, with fresh randomness <math><mi>ρ</mi></math>, he returns</p>
+
+    <div class="eq" id="eq-8">
+      <math display="block">
+        <semantics>
+          <mrow>
+            <mi>Enc</mi><mo>(</mo><mi>ρ</mi><mo>·</mo><mi>P</mi><mo>(</mo><mi>y</mi><mo>)</mo><mo>+</mo><mi>y</mi><mo>)</mo>
+          </mrow>
+          <annotation encoding="application/x-tex">\mathrm{Enc}\bigl(\rho \cdot P(y) + y\bigr)</annotation>
+        </semantics>
+      </math>
+      <span class="eq-num">(8)</span>
+    </div>
+
+    <p>If <math><mi>y</mi><mo>∈</mo><mi>X</mi></math> then <math><mi>P</mi><mo>(</mo><mi>y</mi><mo>)</mo><mo>=</mo><mn>0</mn></math> and Alice decrypts <math><mi>y</mi></math> itself. Otherwise she decrypts a uniformly random value. Bucketing with hashing keeps the cost from growing as <math><mi>n</mi><mo>·</mo><mi>m</mi></math>.</p>
+
+    <p>Modern lattice-based homomorphic encryption makes this approach effective for <em>unbalanced</em> PSI, where a phone with a few hundred contacts queries a server holding hundreds of millions of records. Chen, Laine and Rindal <a href="#ref-clr">[6]</a> give a protocol whose communication is linear in the small set and only logarithmic in the large one.</p>
+  </section>
+
+  <section id="s7" aria-labelledby="s7-h">
+    <h2 id="s7-h"><span class="secno">7</span>What PSI does not promise</h2>
+    <p>PSI computes a function. It does not judge whether revealing that function's output is wise. Three limits are worth stating plainly:</p>
+    <ol>
+      <li><strong>Input choice is free.</strong> No protocol stops Alice from putting every phone number in a city into <math><mi>X</mi></math>. The output then reveals exactly which of those numbers are in <math><mi>Y</mi></math>. Deployments defend against this outside the cryptography: they cap set sizes, rate-limit queries, or attest the client.</li>
+      <li><strong>Sizes leak.</strong> Standard protocols reveal <math><mi>n</mi></math> and <math><mi>m</mi></math>. Padding with dummy elements hides the true sizes at extra cost.</li>
+      <li><strong>The output may be too much.</strong> Often only the size <math><mrow><mo>|</mo><mi>X</mi><mo>∩</mo><mi>Y</mi><mo>|</mo></mrow></math> (PSI-cardinality) or an aggregate over matched records (PSI-sum <a href="#ref-ion">[7]</a>) is needed. Asking for the narrower function is the cheapest privacy gain there is.</li>
+    </ol>
+  </section>
+
+  <section id="s8" aria-labelledby="s8-h">
+    <h2 id="s8-h"><span class="secno">8</span>Choosing a protocol</h2>
+    <div class="table-wrap">
+      <table>
+        <caption><b>Table 1.</b> The main PSI families compared qualitatively. Concrete performance depends on the implementation, the network and the security model.</caption>
+        <thead>
+          <tr><th scope="col">Family</th><th scope="col">Core primitive</th><th scope="col">Communication</th><th scope="col">Best suited to</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Diffie–Hellman <a href="#ref-meadows">[1]</a> <a href="#ref-hfh">[2]</a></th><td>Group exponentiation</td><td>Linear, in group elements</td><td>Simplicity, low bandwidth, small to medium sets</td></tr>
+          <tr><th scope="row">OT / VOLE OPRF <a href="#ref-kkrt">[5]</a> <a href="#ref-vole">[8]</a></th><td>Symmetric crypto + OT extension</td><td>Linear, small constants</td><td>Very large balanced sets on fast networks</td></tr>
+          <tr><th scope="row">Lattice HE <a href="#ref-clr">[6]</a></th><td>Leveled homomorphic encryption</td><td>Linear in small set, logarithmic in large</td><td>Unbalanced: light client, huge server</td></tr>
+          <tr><th scope="row">Polynomial / Paillier <a href="#ref-fnp">[3]</a></th><td>Additive homomorphic encryption</td><td>Linear, in ciphertexts</td><td>Historical foundation; teaching</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Diffie–Hellman PSI over a modern curve is the right default for most first deployments. It is easy to audit, it is built from standardised parts (RFC 9380, RFC 9497), and its cost is predictable. Move to OT- or VOLE-based protocols when the sets reach millions of elements, and to homomorphic encryption when one side is far smaller than the other.</p>
+  </section>
+
+  </div>
+
+  <section id="refs" class="references" aria-labelledby="refs-h">
+    <h2 id="refs-h">References <span lang="eu" class="eu">Erreferentziak</span></h2>
+    <ol>
+      <li id="ref-meadows">C. Meadows. “A More Efficient Cryptographic Matchmaking Protocol for Use in the Absence of a Continuously Available Third Party.” <i>IEEE Symposium on Security and Privacy</i>, 1986.</li>
+      <li id="ref-hfh">B. A. Huberman, M. Franklin, T. Hogg. “Enhancing Privacy and Trust in Electronic Communities.” <i>ACM Conference on Electronic Commerce</i>, 1999.</li>
+      <li id="ref-fnp">M. J. Freedman, K. Nissim, B. Pinkas. “Efficient Private Matching and Set Intersection.” <i>EUROCRYPT</i>, 2004.</li>
+      <li id="ref-psz">B. Pinkas, T. Schneider, M. Zohner. “Faster Private Set Intersection Based on OT Extension.” <i>USENIX Security Symposium</i>, 2014.</li>
+      <li id="ref-kkrt">V. Kolesnikov, R. Kumaresan, M. Rosulek, N. Trieu. “Efficient Batched Oblivious PRF with Applications to Private Set Intersection.” <i>ACM CCS</i>, 2016.</li>
+      <li id="ref-clr">H. Chen, K. Laine, P. Rindal. “Fast Private Set Intersection from Homomorphic Encryption.” <i>ACM CCS</i>, 2017.</li>
+      <li id="ref-ion">M. Ion, B. Kreuter, A. E. Nergiz, S. Patel, S. Saxena, K. Seth, M. Raykova, D. Shanahan, M. Yung. “On Deploying Secure Computing: Private Intersection-Sum-with-Cardinality.” <i>IEEE EuroS&amp;P</i>, 2020.</li>
+      <li id="ref-vole">P. Rindal, P. Schoppmann. “VOLE-PSI: Fast OPRF and Circuit-PSI from Vector-OLE.” <i>EUROCRYPT</i>, 2021.</li>
+      <li id="ref-rfc9380">A. Faz-Hernández, S. Scott, N. Sullivan, R. S. Wahby, C. A. Wood. “Hashing to Elliptic Curves.” <a href="https://www.rfc-editor.org/rfc/rfc9380">RFC 9380</a>, 2023.</li>
+      <li id="ref-rfc9497">A. Davidson, A. Faz-Hernández, N. Sullivan, C. A. Wood. “Oblivious Pseudorandom Functions (OPRFs) Using Prime-Order Groups.” <a href="https://www.rfc-editor.org/rfc/rfc9497">RFC 9497</a>, 2023.</li>
+    </ol>
+  </section>
+
+  <section class="cite" aria-labelledby="cite-h">
+    <h2 id="cite-h">Cite this work <span lang="eu" class="eu">Aipatu lan hau</span></h2>
+    <pre><code>@misc{monografiak-xyz-2026,
+  title     = {XYZ: Cryptography and Private Set Intersection Protocols},
+  author    = {{Monografiak}},
+  year      = {2026},
+  month     = oct,
+  number    = {1},
+  publisher = {monografiak.works},
+  url       = {https://monografiak.works/xyz/},
+  note      = {Version 1.0. Licensed under CC BY 4.0}
+}</code></pre>
+  </section>
+
+</article>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 monografiak.works. Text and figures are licensed under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International</a>. You may copy, adapt, index and train on this work, provided you give attribution. <a href="/license/">Details</a>.</p>
+    <p>An independent publication: no ads, no trackers, no cookies, no JavaScript. <span lang="eu">Argitalpen independentea.</span></p>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,280 @@
+/*
+ * monografiak.works — the text is the design.
+ * One stylesheet, no web fonts, no JavaScript. Everything readable without CSS.
+ */
+
+:root {
+  /* Ikurriña palette, tuned for WCAG AA text contrast */
+  --bg: #fcfbf8;
+  --text: #161616;
+  --muted: #595959;
+  --rule: #dcd8d0;
+  --accent: #b3121f;   /* gorria: red */
+  --green: #00673a;    /* berdea: green */
+  --surface: #f3f1eb;
+  --focus: #00673a;
+
+  --measure: 40rem;
+  --font-text: "Iowan Old Style", "Charter", "Sitka Text", "Palatino Linotype", Cambria, Georgia, serif;
+  --font-math: "STIX Two Math", "Latin Modern Math", "Cambria Math", math;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --text: #ece9e3;
+    --muted: #a8a49c;
+    --rule: #3a3936;
+    --accent: #ff8a7a;
+    --green: #5fd19a;
+    --surface: #1c1c1b;
+    --focus: #5fd19a;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  border-top: 6px solid var(--accent);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-text);
+  font-size: clamp(1.0625rem, 0.95rem + 0.45vw, 1.25rem);
+  line-height: 1.6;
+  font-kerning: normal;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+/* ---------- Layout ---------- */
+
+.wrap {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+  background: var(--bg);
+  padding: 0.5rem 0.75rem;
+  outline: 2px solid var(--focus);
+  z-index: 10;
+}
+
+.site-header {
+  padding-block: 1.5rem 0;
+  font-size: 0.875em;
+}
+.site-header .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.75rem;
+}
+.site-header a { text-decoration: none; }
+.site-header .brand { font-weight: 600; letter-spacing: 0.01em; color: var(--text); display: inline-flex; align-items: center; gap: 0.5rem; }
+.mark { color: var(--accent); flex: none; }
+.eu { color: var(--green); font-weight: 400; font-style: italic; font-size: 0.85em; letter-spacing: 0; text-transform: none; }
+.eu::before { content: "· "; color: var(--muted); font-style: normal; }
+.site-header nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1.25rem; }
+
+main { padding-block: 2.5rem 4rem; }
+
+.site-footer {
+  font-size: 0.8125em;
+  color: var(--muted);
+  padding-block: 0 3rem;
+}
+.site-footer .wrap { border-top: 1px solid var(--rule); padding-top: 1rem; }
+.site-footer p { margin: 0.25rem 0; }
+
+/* ---------- Text ---------- */
+
+a { color: var(--accent); text-underline-offset: 0.15em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 2px; }
+
+h1, h2, h3, h4 {
+  line-height: 1.2;
+  font-weight: 600;
+  text-wrap: balance;
+  hyphens: manual;
+}
+h1 { font-size: 2.25em; margin: 0 0 0.5rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.375em; margin: 3rem 0 0.75rem; }
+h3 { font-size: 1.125em; margin: 2rem 0 0.5rem; }
+h2 .secno, h3 .secno { color: var(--accent); font-weight: 400; margin-right: 0.5em; font-variant-numeric: lining-nums; }
+
+p { margin: 0 0 1rem; text-wrap: pretty; }
+
+small, .meta { color: var(--muted); font-size: 0.875em; }
+
+abbr[title] { text-decoration: none; font-variant: all-small-caps; letter-spacing: 0.03em; }
+
+strong { font-weight: 600; }
+
+hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
+
+ul, ol { padding-left: 1.5rem; margin: 0 0 1rem; }
+li { margin-bottom: 0.35rem; }
+
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  font-variant-numeric: normal;
+}
+:not(pre) > code { background: var(--surface); padding: 0.1em 0.3em; border-radius: 3px; }
+pre {
+  background: var(--surface);
+  padding: 1rem;
+  overflow-x: auto;
+  line-height: 1.45;
+  border-radius: 4px;
+  hyphens: none;
+}
+
+blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--rule);
+  color: var(--muted);
+}
+
+/* ---------- Monograph front matter ---------- */
+
+.kicker {
+  font-size: 0.8125em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.subtitle { font-size: 1.25em; font-style: italic; margin: 0 0 1.5rem; color: var(--muted); line-height: 1.35; }
+.byline { font-size: 0.9375em; margin-bottom: 2rem; }
+.byline dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.15rem 1rem; margin: 0; }
+.byline dt { color: var(--muted); }
+.byline dd { margin: 0; }
+
+.abstract {
+  border-top: 3px solid var(--accent);
+  border-bottom: 1px solid var(--green);
+  padding-block: 1rem;
+  margin-bottom: 2rem;
+}
+.abstract h2 { font-size: 0.8125em; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.5rem; color: var(--muted); }
+.abstract p:last-child { margin-bottom: 0; }
+
+.toc { font-size: 0.9375em; margin-bottom: 2rem; }
+.toc h2 { font-size: 0.8125em; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.5rem; color: var(--muted); }
+.toc ol { list-style: none; padding: 0; }
+.toc li { margin-bottom: 0.2rem; }
+.toc a { text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+
+/* ---------- Blocks: math ---------- */
+
+math { font-family: var(--font-math); font-size: 1.05em; }
+
+.eq {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-block: 0.25rem;
+}
+.eq math[display="block"] { margin: 0; }
+.eq .eq-num { color: var(--muted); font-variant-numeric: lining-nums; }
+
+/* ---------- Blocks: figures and images ---------- */
+
+figure { margin: 2rem 0; }
+figure img, figure svg { display: block; max-width: 100%; height: auto; margin-inline: auto; }
+figcaption { font-size: 0.875em; color: var(--muted); margin-top: 0.75rem; line-height: 1.5; }
+figcaption b { color: var(--text); font-weight: 600; }
+
+/* Wide figures may break out of the text column on large screens */
+figure.wide { margin-inline: calc(50% - min(50vw, 30rem) + 1rem); }
+
+/* ---------- Blocks: notes, definitions, tables ---------- */
+
+.note, .definition {
+  margin: 1.5rem 0;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border-left: 3px solid var(--accent);
+}
+.note > :last-child, .definition > :last-child { margin-bottom: 0; }
+.note .label, .definition .label { font-weight: 600; font-style: normal; }
+
+.table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+table { border-collapse: collapse; width: 100%; font-size: 0.875em; font-variant-numeric: lining-nums tabular-nums; }
+caption { caption-side: bottom; text-align: left; color: var(--muted); padding-top: 0.75rem; }
+th, td { text-align: left; vertical-align: top; padding: 0.5rem 0.75rem 0.5rem 0; border-bottom: 1px solid var(--rule); }
+thead th { border-bottom: 2px solid var(--text); font-weight: 600; }
+
+/* ---------- References & citation ---------- */
+
+.references ol { padding-left: 2rem; font-size: 0.9375em; }
+.references li { margin-bottom: 0.6rem; }
+
+.cite pre { white-space: pre-wrap; }
+
+/* ---------- Works index ---------- */
+
+.lede { font-size: 1.25em; line-height: 1.45; margin-bottom: 2.5rem; }
+.works { list-style: none; padding: 0; margin: 0; }
+.works li { border-top: 1px solid var(--rule); padding-block: 1.25rem; }
+.works li:first-child { border-top: 3px solid var(--accent); }
+.works .no { color: var(--muted); font-size: 0.875em; font-variant-numeric: lining-nums; }
+.works h3 { margin: 0.25rem 0 0.25rem; font-size: 1.375em; }
+.works h3 a { text-decoration: none; color: var(--text); }
+.works h3 a:hover { color: var(--accent); }
+.works p { margin: 0.25rem 0 0; }
+
+/* ---------- Motion & print ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+@media print {
+  :root { --bg: #fff; --text: #000; --muted: #444; --accent: #000; --surface: #f3f3f3; }
+  body { font-size: 11pt; }
+  body { border-top: 0; }
+  .site-header nav, .skip, .toc { display: none; }
+  a { color: inherit; text-decoration: none; }
+  .references a::after { content: " <" attr(href) ">"; font-size: 0.85em; }
+  h2, h3 { break-after: avoid; }
+  figure, .eq, table { break-inside: avoid; }
+}
+
+/* Home masthead: never split the name mid-word */
+.masthead { font-size: clamp(1.9rem, 9vw, 2.75rem); overflow-wrap: normal; hyphens: none; }
+.masthead .dot { color: var(--accent); }
+.eq > math { min-width: 0; max-width: 100%; overflow-x: auto; }

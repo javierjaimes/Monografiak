@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-21 -21 42 42">
-  <style>path{fill:#c8102e}@media (prefers-color-scheme: dark){path{fill:#ff8a7a}}</style>
-  <path id="a" d="M0 0 A10 10 0 0 1 0 -20 A5 5 0 0 1 0 -10 A5 5 0 0 0 0 0 Z"/>
-  <use href="#a" transform="rotate(90)"/>
-  <use href="#a" transform="rotate(180)"/>
-  <use href="#a" transform="rotate(270)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#F3EBDD"/>
+  <line x1="3" y1="16" x2="29" y2="16" stroke="#16120F" stroke-width="1.5"/>
+  <line x1="16" y1="3" x2="16" y2="29" stroke="#16120F" stroke-width="1.5"/>
+  <circle cx="16" cy="16" r="4.5" fill="#16120F"/>
 </svg>

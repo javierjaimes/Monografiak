@@ -1,16 +1,20 @@
 ---
 title: "XYZ: Cryptography and Private Set Intersection Protocols"
 series: monografiak.works
-number: 1
-date: 2026-10-10
+monografia: "01"
+author: "[YOUR FULL NAME]"
+provenance: "Text drafted by Claude (Anthropic), an AI model, at the publisher's request. Not the author's original writing."
+published: 2026-10-10
+expires: 2027-10-10
 version: "1.0"
 language: en
-canonical: https://monografiak.works/xyz/
-license: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
-attribution: "XYZ — monografiak.works, https://monografiak.works/xyz/"
+canonical: https://monografiak.works/01/
+license: CC BY-NC 4.0 (https://creativecommons.org/licenses/by-nc/4.0/)
+ai-training: "Use of this work to train commercial AI models is not permitted without permission."
+attribution: "Monografia 01 · XYZ — monografiak.works, https://monografiak.works/01/"
 ---
 
-# XYZ
+# Monografia 01 · XYZ
 
 *Cryptography and Private Set Intersection Protocols: how two parties find what they have in common without revealing anything else.*
 
@@ -20,13 +24,13 @@ Private set intersection (PSI) lets two parties, each holding a set, learn the e
 
 ## 1. The problem
 
-Two parties, Alice and Bob, each hold a private set. Alice holds $X$ with $n$ elements and Bob holds $Y$ with $m$ elements. Alice wants to compute
+Two parties, Alice and Bob, each hold a private set. Alice holds $X$ with $n$ elements and Bob holds $Y$ with $m$ elements. Alice wants to compute the intersection of the two sets. She must learn nothing about the elements of $Y$ outside the intersection, and Bob must learn nothing about $X$ at all. The intersection is
 
 $$
 X \cap Y = \{\, z : z \in X \text{ and } z \in Y \,\} \tag{1}
 $$
 
-She must learn nothing about the elements of $Y$ outside the intersection, and Bob must learn nothing about $X$ at all. The only things that may leak are the set sizes $n$ and $m$.
+The only things that may leak are the set sizes $n$ and $m$.
 
 The problem shows up wherever two organisations or devices need to match records they are not allowed, or not willing, to share:
 
@@ -45,9 +49,9 @@ $$
 |U| \text{ hash evaluations;}\quad |U| \approx 10^{10} \text{ for phone numbers.} \tag{2}
 $$
 
-Ten billion SHA-256 evaluations take a few seconds on a single modern GPU. Salting doesn't help, because both sides need the same salt for the comparison to work. Hashing hides structure. It doesn't hide *low-entropy* data.
+Ten billion SHA-256 evaluations take a few seconds on a single modern GPU. Salting doesn’t help, because both sides need the same salt for the comparison to work. Hashing hides structure. It doesn’t hide *low-entropy* data.
 
-> **Note.** PSI protocols remove the dictionary attack by making the value Alice compares depend on a secret that only Bob holds. Without Bob's participation, Alice cannot test a guess.
+> **Note.** PSI protocols remove the dictionary attack by making the value Alice compares depend on a secret that only Bob holds. Without Bob’s participation, Alice cannot test a guess.
 
 ## 3. Preliminaries
 
@@ -73,15 +77,15 @@ $$
 
 Alice picks a secret $a$ and Bob a secret $b$, both uniform in $\mathbb{Z}_q$. An element blinded by both exponents comes out the same whichever order the exponents were applied in. Without the exponents, however, a blinded value looks random. Figure 1 shows the exchange.
 
-![Figure 1. Message flow of Diffie–Hellman PSI. Alice sends one message and Bob replies once. The intersection is found locally by Alice in step 3.](https://monografiak.works/xyz/figures/dh-psi.svg)
+*Figure 1. Message flow of Diffie–Hellman PSI. Alice sends one message and Bob replies once. The intersection is found locally by Alice in step 3. (The diagram is drawn inline in the HTML edition.)*
 
 1. Alice sends $u_i = H(x_i)^a$ for each $x_i \in X$.
 2. Bob replies with $u_i^b$ in the original order, so Alice can tell which value belongs to which $x_i$. He also sends $v_j = H(y_j)^b$ for each $y_j \in Y$, randomly permuted.
 3. Alice computes $v_j^a$. If $u_i^b = v_j^a$ for some $j$, then $x_i \in X \cap Y$.
 
-Each party performs $n + m$ exponentiations, and the parties exchange $2n + m$ group elements in total. Against semi-honest adversaries the protocol is secure under the DDH assumption when $H$ is modelled as a random oracle. Bob sees only values of the form $H(x)^a$, which look random. Alice sees $H(y)^b$ for every $y$, but she cannot test a guess $y'$ without knowing $b$. That closes the dictionary attack from §2.
+Each party performs $n + m$ exponentiations, and the parties exchange $2n + m$ group elements in total. Against semi-honest adversaries the protocol is secure under the DDH assumption when $H$ is modelled as a random oracle. Bob sees only values of the form $H(x)^a$, which look random. Alice sees $H(y)^b$ for every $y$, but she cannot test a guess $y'$ without knowing $b$. That closes the dictionary attack from § 2.
 
-The protocol fits in a page of code and needs only a standard elliptic-curve library. It still runs in production today, for example in Google's *Private Join and Compute* [7].
+The protocol fits in a page of code and needs only a standard elliptic-curve library. It still runs in production today, for example in Google’s *Private Join and Compute* [7].
 
 ## 5. PSI from oblivious pseudorandom functions
 
@@ -105,7 +109,7 @@ For very large sets, the fastest protocols avoid public-key operations on each e
 
 ## 6. PSI from homomorphic encryption
 
-Freedman, Nissim and Pinkas [3] encode Alice's set as the roots of a polynomial:
+Freedman, Nissim and Pinkas [3] encode Alice’s set as the roots of a polynomial:
 
 $$
 P(z) = \prod_{i=1}^{n} (z - x_i) = \sum_{i=0}^{n} \alpha_i z^i \tag{7}
@@ -123,7 +127,7 @@ Modern lattice-based homomorphic encryption makes this approach effective for *u
 
 ## 7. What PSI does not promise
 
-PSI computes a function. It does not judge whether revealing that function's output is wise. Three limits are worth stating plainly:
+PSI computes a function. It does not judge whether revealing that function’s output is wise. Three limits are worth stating plainly:
 
 1. **Input choice is free.** No protocol stops Alice from putting every phone number in a city into $X$. The output then reveals exactly which of those numbers are in $Y$. Deployments defend against this outside the cryptography: they cap set sizes, rate-limit queries, or attest the client.
 2. **Sizes leak.** Standard protocols reveal $n$ and $m$. Padding with dummy elements hides the true sizes at extra cost.
@@ -144,17 +148,21 @@ Diffie–Hellman PSI over a modern curve is the right default for most first dep
 
 ## References
 
-1. C. Meadows. "A More Efficient Cryptographic Matchmaking Protocol for Use in the Absence of a Continuously Available Third Party." *IEEE Symposium on Security and Privacy*, 1986.
-2. B. A. Huberman, M. Franklin, T. Hogg. "Enhancing Privacy and Trust in Electronic Communities." *ACM Conference on Electronic Commerce*, 1999.
-3. M. J. Freedman, K. Nissim, B. Pinkas. "Efficient Private Matching and Set Intersection." *EUROCRYPT*, 2004.
-4. B. Pinkas, T. Schneider, M. Zohner. "Faster Private Set Intersection Based on OT Extension." *USENIX Security Symposium*, 2014.
-5. V. Kolesnikov, R. Kumaresan, M. Rosulek, N. Trieu. "Efficient Batched Oblivious PRF with Applications to Private Set Intersection." *ACM CCS*, 2016.
-6. H. Chen, K. Laine, P. Rindal. "Fast Private Set Intersection from Homomorphic Encryption." *ACM CCS*, 2017.
-7. M. Ion, B. Kreuter, A. E. Nergiz, S. Patel, S. Saxena, K. Seth, M. Raykova, D. Shanahan, M. Yung. "On Deploying Secure Computing: Private Intersection-Sum-with-Cardinality." *IEEE EuroS&P*, 2020.
-8. P. Rindal, P. Schoppmann. "VOLE-PSI: Fast OPRF and Circuit-PSI from Vector-OLE." *EUROCRYPT*, 2021.
-9. A. Faz-Hernández, S. Scott, N. Sullivan, R. S. Wahby, C. A. Wood. "Hashing to Elliptic Curves." RFC 9380, 2023. https://www.rfc-editor.org/rfc/rfc9380
-10. A. Davidson, A. Faz-Hernández, N. Sullivan, C. A. Wood. "Oblivious Pseudorandom Functions (OPRFs) Using Prime-Order Groups." RFC 9497, 2023. https://www.rfc-editor.org/rfc/rfc9497
+1. C. Meadows. “A More Efficient Cryptographic Matchmaking Protocol for Use in the Absence of a Continuously Available Third Party.” *IEEE Symposium on Security and Privacy*, 1986.
+2. B. A. Huberman, M. Franklin, T. Hogg. “Enhancing Privacy and Trust in Electronic Communities.” *ACM Conference on Electronic Commerce*, 1999.
+3. M. J. Freedman, K. Nissim, B. Pinkas. “Efficient Private Matching and Set Intersection.” *EUROCRYPT*, 2004.
+4. B. Pinkas, T. Schneider, M. Zohner. “Faster Private Set Intersection Based on OT Extension.” *USENIX Security Symposium*, 2014.
+5. V. Kolesnikov, R. Kumaresan, M. Rosulek, N. Trieu. “Efficient Batched Oblivious PRF with Applications to Private Set Intersection.” *ACM CCS*, 2016.
+6. H. Chen, K. Laine, P. Rindal. “Fast Private Set Intersection from Homomorphic Encryption.” *ACM CCS*, 2017.
+7. M. Ion, B. Kreuter, A. E. Nergiz, S. Patel, S. Saxena, K. Seth, M. Raykova, D. Shanahan, M. Yung. “On Deploying Secure Computing: Private Intersection-Sum-with-Cardinality.” *IEEE EuroS&P*, 2020.
+8. P. Rindal, P. Schoppmann. “VOLE-PSI: Fast OPRF and Circuit-PSI from Vector-OLE.” *EUROCRYPT*, 2021.
+9. A. Faz-Hernández, S. Scott, N. Sullivan, R. S. Wahby, C. A. Wood. “Hashing to Elliptic Curves.” RFC 9380, 2023. https://www.rfc-editor.org/rfc/rfc9380
+10. A. Davidson, A. Faz-Hernández, N. Sullivan, C. A. Wood. “Oblivious Pseudorandom Functions (OPRFs) Using Prime-Order Groups.” RFC 9497, 2023. https://www.rfc-editor.org/rfc/rfc9497
 
 ---
 
-© 2026 monografiak.works. Licensed under CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
+Monografia 01 · Version 1.0 · Published 2026-10-10 · Expires 2027-10-10
+Text drafted by Claude (Anthropic), an AI model, at the publisher’s request; not the author’s original writing.
+© 2026 [YOUR FULL NAME] · monografiak.works. Licensed under CC BY-NC 4.0 — https://creativecommons.org/licenses/by-nc/4.0/
+Commercial use, including training commercial AI models, requires written permission from the author.
+Worked numerical examples in the HTML edition are computed by tools/cipher.py and are reproducible.

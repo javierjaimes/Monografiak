@@ -1,0 +1,30 @@
+# ai.txt — monografiak.works
+# Machine-readable statement of AI training permissions.
+#
+# All works on this site are licensed CC BY-NC 4.0
+# (https://creativecommons.org/licenses/by-nc/4.0/).
+# Use of this work to train commercial AI models is not permitted without permission.
+# Search indexing and archiving are permitted.
+# Contact the author for permission: see https://monografiak.works/license/
+
+User-Agent: *
+Disallow: /
+Disallow: *.html
+Disallow: *.md
+Disallow: *.txt
+Disallow: *.svg
+Disallow: *.json
+
+User-Agent: GPTBot
+User-Agent: ClaudeBot
+User-Agent: anthropic-ai
+User-Agent: CCBot
+User-Agent: Google-Extended
+User-Agent: Applebot-Extended
+User-Agent: PerplexityBot
+User-Agent: Meta-ExternalAgent
+User-Agent: Bytespider
+User-Agent: cohere-ai
+User-Agent: Amazonbot
+User-Agent: MistralAI-User
+Disallow: /

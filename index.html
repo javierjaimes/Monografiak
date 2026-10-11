@@ -3,11 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>monografiak.works — independent monographs</title>
-<meta name="description" content="An independent press for monographs. Long-form media and academic works, openly licensed and free to read, cite and index.">
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<title>Monografiak — monografiak.works</title>
+<meta name="description" content="An independent press for monographs. One idea. One year. One signature.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, noai, noimageai">
+<meta name="tdm-reservation" content="1">
+<meta name="tdm-policy" content="https://monografiak.works/license/">
 <link rel="canonical" href="https://monografiak.works/">
-<link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+<link rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">
+<link rel="preload" href="/assets/fonts/gasoek-one-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/style.css">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <script type="application/ld+json">
@@ -15,18 +18,22 @@
   "@context": "https://schema.org",
   "@type": "Periodical",
   "name": "monografiak.works",
+  "alternateName": "Monografiak",
   "url": "https://monografiak.works/",
-  "description": "An independent press for monographs: long-form, media and academic works published openly under CC BY 4.0.",
+  "description": "An independent press for monographs. One idea. One year. One signature.",
   "inLanguage": ["en", "eu"],
-  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+  "usageInfo": "https://monografiak.works/license/",
   "isAccessibleForFree": true,
   "hasPart": [{
     "@type": "ScholarlyArticle",
     "position": 1,
     "headline": "XYZ: Cryptography and Private Set Intersection Protocols",
-    "url": "https://monografiak.works/xyz/",
+    "url": "https://monografiak.works/01/",
+    "author": { "@type": "Person", "name": "[YOUR FULL NAME]" },
     "datePublished": "2026-10-10",
-    "license": "https://creativecommons.org/licenses/by/4.0/"
+    "expires": "2027-10-10",
+    "license": "https://creativecommons.org/licenses/by-nc/4.0/"
   }]
 }
 </script>
@@ -34,48 +41,53 @@
 <body>
 <a class="skip" href="#content">Skip to content</a>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="/"><svg class="mark" aria-hidden="true" width="22" height="22"><use href="/assets/lauburu.svg#lauburu"/></svg>monografiak.works</a>
-    <nav aria-label="Site">
-      <ul>
-        <li><a href="/">Works <span lang="eu" class="eu">Lanak</span></a></li>
-        <li><a href="/license/">License <span lang="eu" class="eu">Lizentzia</span></a></li>
-      </ul>
-    </nav>
-  </div>
+<header class="running">
+  <a class="wordmark" href="/" lang="eu">Monografiak</a>
+  <nav class="site-nav" aria-label="Site">
+    <ul>
+      <li><a href="/"><span class="bi"><span lang="eu">Lanak</span><span lang="en">Works</span></span></a></li>
+      <li><a href="/license/"><span class="bi"><span lang="eu">Lizentzia</span><span lang="en">License</span></span></a></li>
+    </ul>
+  </nav>
 </header>
 
-<main id="content">
-<div class="wrap">
-  <h1 class="masthead">monografiak<span class="dot">.</span>works</h1>
-  <p class="lede">An independent press for monographs. Each work is a single long-form essay with figures, equations and references, free to read, cite and reuse. <span lang="eu" class="eu">Monografien argitaletxe independentea.</span></p>
+<main id="content" class="folio">
+  <header class="sub">
+    <h1 class="cover-mark full" lang="eu">Monografiak</h1>
+    <p class="motto wide"><span lang="eu">Ideia bat. Urte bat. Sinadura bat.</span><span lang="en">— One idea. One year. One signature.</span></p>
+  </header>
 
-  <section aria-labelledby="works-h">
-    <h2 id="works-h" class="kicker">Works <span lang="eu" class="eu">Lanak</span></h2>
-    <ol class="works" reversed>
-      <li>
-        <p class="no">Nº 1 · <time datetime="2026-10-10">October 2026</time> · Cryptography</p>
-        <h3><a href="/xyz/">XYZ</a></h3>
-        <p>Cryptography and Private Set Intersection Protocols: how two parties find what they have in common without revealing anything else.</p>
+  <section class="contents sub" aria-labelledby="lanak-h">
+    <h2 id="lanak-h" class="label wide"><span class="bi"><span lang="eu">Lanak</span><span lang="en">Works</span></span></h2>
+    <ol class="works wide">
+      <li class="work">
+        <p class="numero" aria-hidden="true">01</p>
+        <div class="work-body">
+          <p class="rubric">
+            <span class="bi"><span lang="eu">Saiakera</span><span lang="en">Essay</span></span>
+            <span class="bi"><span lang="eu">Kriptografia</span><span lang="en">Cryptography</span></span>
+          </p>
+          <h3 class="work-title"><a href="/01/"><span class="work-no label" lang="eu">Monografia 01</span>XYZ</a></h3>
+          <p class="work-eu"><span lang="eu">Ebakidura pribatua</span></p>
+          <p class="dek">Cryptography and private set intersection protocols: how two parties find what they have in common without revealing anything else.</p>
+          <p class="dateline">[YOUR FULL NAME]<span class="sep">·</span><span class="bi"><span lang="eu">Argitaratua 10.10.2026</span><span lang="en">Published</span></span><span class="sep">·</span><span class="bi"><span lang="eu">Iraungitzea 10.10.2027</span><span lang="en">Expires</span></span></p>
+          <!--cipher:fingerprint-short--><p class="fp-short"><span class="label">SHA-256 · <span lang="eu">Hatz-marka</span></span> <code class="hex">fa4d593f<wbr>ca67081c<wbr>f14e9a28<wbr>9f9b7465<wbr>efd7b92f<wbr>887b98ed<wbr>3086c919<wbr>e3e47779</code></p><!--/cipher:fingerprint-short-->
+        </div>
       </li>
     </ol>
   </section>
 
-  <section aria-labelledby="about-h">
-    <h2 id="about-h">Colophon <span lang="eu" class="eu">Kolofoia</span></h2>
-    <p>monografiak.works publishes monographs in a media and academic register. The text is the design. Pages use the reader's own system fonts, and mathematics is written in native MathML, so it can be read aloud by screen readers and parsed by machines without scripts. Every page works without CSS and prints cleanly.</p>
-    <p>The colours are those of the ikurriña, and the mark is the lauburu, the four-headed Basque cross.</p>
-    <p>All works are licensed under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>. Search engines, archives and AI crawlers are welcome. See the <a href="/license/">license</a>, <a href="/llms.txt">llms.txt</a> and <a href="/robots.txt">robots.txt</a>.</p>
+  <section class="press sub" aria-labelledby="press-h">
+    <h2 id="press-h" class="label"><span class="bi"><span lang="eu">Argitaletxea</span><span lang="en">The press</span></span></h2>
+    <p>Monografiak is an independent press. Each monograph is one long-form essay with figures, equations and references. It is signed by its author and published with a fingerprint of its source text. Each one expires a year after publication, on purpose.</p>
+    <p>Here the text is the design: three typefaces, three colours and thin rules. Mathematics is native MathML, so it can be read aloud and needs no scripts. Every hash printed on these pages is real and can be reproduced.</p>
+    <p>Works are published under <a href="https://creativecommons.org/licenses/by-nc/4.0/" rel="license">CC BY-NC 4.0</a>. Search engines and archives are welcome. Training commercial AI models on these works is not permitted without permission. See the <a href="/license/">license</a>.</p>
   </section>
-</div>
 </main>
 
 <footer class="site-footer">
-  <div class="wrap">
-    <p>© 2026 monografiak.works. Text and figures are licensed under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International</a>. You may copy, adapt, index and train on this work, provided you give attribution. <a href="/license/">Details</a>.</p>
-    <p>An independent publication: no ads, no trackers, no cookies, no JavaScript. <span lang="eu">Argitalpen independentea.</span></p>
-  </div>
+  <p>© 2026 [YOUR FULL NAME]<span class="sep">·</span>monografiak.works<span class="sep">·</span>Licensed <a href="https://creativecommons.org/licenses/by-nc/4.0/" rel="license">CC BY-NC 4.0</a>. Non-commercial use with attribution. Commercial use, including training commercial AI models, requires written permission. <a href="/license/">License</a>.</p>
+  <p>An independent publication: no ads, no trackers, no cookies, no JavaScript.</p>
 </footer>
 </body>
 </html>

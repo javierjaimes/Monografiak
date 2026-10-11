@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monografia 01 · XYZ — Cryptography and Private Set Intersection · monografiak.works</title>
+<meta name="description" content="Monografia 01. Cryptography and private set intersection (PSI): how two parties find what they have in common without revealing anything else.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, noai, noimageai">
+<meta name="tdm-reservation" content="1">
+<meta name="tdm-policy" content="https://monografiak.works/license/">
+<link rel="canonical" href="https://monografiak.works/01/">
+<link rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">
+<link rel="alternate" type="text/markdown" href="/01/monografia-01.md" title="Canonical source (Markdown + TeX)">
+<link rel="preload" href="/assets/fonts/gasoek-one-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/source-serif-4-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+
+<!-- Scholarly metadata (Google Scholar / Highwire) -->
+<meta name="citation_title" content="XYZ: Cryptography and Private Set Intersection Protocols">
+<meta name="citation_author" content="[YOUR FULL NAME]">
+<meta name="citation_publication_date" content="2026/10/10">
+<meta name="citation_journal_title" content="monografiak.works">
+<meta name="citation_issue" content="01">
+<meta name="citation_language" content="en">
+<meta name="citation_public_url" content="https://monografiak.works/01/">
+<!-- Dublin Core -->
+<meta name="dc.title" content="XYZ: Cryptography and Private Set Intersection Protocols">
+<meta name="dc.creator" content="[YOUR FULL NAME]">
+<meta name="dc.contributor" content="Claude (Anthropic), AI model: drafted the text">
+<meta name="dc.publisher" content="monografiak.works">
+<meta name="dc.date" content="2026-10-10">
+<meta name="dc.identifier" content="https://monografiak.works/01/">
+<meta name="dc.rights" content="CC BY-NC 4.0 — https://creativecommons.org/licenses/by-nc/4.0/ — commercial use, including training commercial AI models, requires written permission">
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Monografia 01 · XYZ — Cryptography and Private Set Intersection">
+<meta property="og:description" content="How two parties find what they have in common without revealing anything else.">
+<meta property="og:url" content="https://monografiak.works/01/">
+<meta property="og:site_name" content="monografiak.works">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="eu_ES">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "XYZ: Cryptography and Private Set Intersection Protocols",
+  "alternativeHeadline": "Monografia 01 · Ebakidura pribatua",
+  "url": "https://monografiak.works/01/",
+  "inLanguage": "en",
+  "datePublished": "2026-10-10",
+  "dateModified": "2026-10-11",
+  "expires": "2027-10-10",
+  "version": "1.0",
+  "position": 1,
+  "author": { "@type": "Person", "name": "[YOUR FULL NAME]" },
+  "contributor": { "@type": "Organization", "name": "Anthropic", "description": "Claude, an AI model, drafted the text at the publisher's request." },
+  "publisher": { "@type": "Organization", "name": "monografiak.works", "url": "https://monografiak.works/" },
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+  "usageInfo": "https://monografiak.works/license/",
+  "isAccessibleForFree": true,
+  "keywords": ["cryptography", "private set intersection", "PSI", "Diffie-Hellman", "oblivious pseudorandom function", "OPRF", "secure multiparty computation", "privacy"],
+  "encoding": { "@type": "MediaObject", "contentUrl": "https://monografiak.works/01/monografia-01.md", "encodingFormat": "text/markdown" },
+  "accessibilityFeature": ["MathML", "alternativeText", "longDescription", "tableOfContents", "structuralNavigation"],
+  "accessibilityHazard": "none",
+  "accessMode": ["textual", "visual"],
+  "accessModeSufficient": ["textual"]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="running">
+  <a class="wordmark" href="/" lang="eu">Monografiak</a>
+  <span class="issue" lang="eu">Monografia 01</span>
+</header>
+
+<main id="content">
+<article class="folio" itemscope itemtype="https://schema.org/ScholarlyArticle">
+
+  <!-- ============================================================ MASTHEAD -->
+  <header class="masthead sub">
+    <p class="rubric">
+      <span class="bi"><span lang="eu">Saiakera</span><span lang="en">Essay</span></span>
+      <span class="bi"><span lang="eu">Kriptografia</span><span lang="en">Cryptography</span></span>
+      <span class="bi"><span lang="eu">Nº&#8201;01<span class="sep">·</span>2026</span><span lang="en">Issue 01</span></span>
+    </p>
+    <p class="numero" aria-hidden="true">01</p>
+    <h1 class="headline" itemprop="headline">XYZ</h1>
+    <p class="display-eu"><span class="bi"><span lang="eu">Ebakidura pribatua</span><span lang="en">Private set intersection</span></span></p>
+    <p class="dek">Cryptography and private set intersection protocols: how two parties find what they have in common without revealing anything else.</p>
+
+    <dl class="byline">
+      <div><dt><span class="bi"><span lang="eu">Egilea</span><span lang="en">Author</span></span></dt><dd itemprop="author">[YOUR FULL NAME]</dd></div>
+      <div><dt><span class="bi"><span lang="eu">Testua</span><span lang="en">Text</span></span></dt><dd>Drafted by Claude (AI)</dd></div>
+      <div><dt><span class="bi"><span lang="eu">Argitaratua</span><span lang="en">Published</span></span></dt><dd><time datetime="2026-10-10" itemprop="datePublished">10.10.2026</time></dd></div>
+      <div><dt><span class="bi"><span lang="eu">Iraungitzea</span><span lang="en">Expires</span></span></dt><dd><time datetime="2027-10-10" itemprop="expires">10.10.2027</time></dd></div>
+      <div><dt><span class="bi"><span lang="eu">Bertsioa</span><span lang="en">Version</span></span></dt><dd>1.0</dd></div>
+      <div><dt><span class="bi"><span lang="eu">Lizentzia</span><span lang="en">License</span></span></dt><dd><a href="https://creativecommons.org/licenses/by-nc/4.0/" rel="license" itemprop="license">CC BY-NC 4.0</a></dd></div>
+      <div><dt><span class="bi"><span lang="eu">Iturria</span><span lang="en">Source</span></span></dt><dd><a href="/01/monografia-01.md">Markdown + TeX</a></dd></div>
+    </dl>
+
+    <!-- ======================================================== ABSTRACT -->
+    <section class="abstract" aria-labelledby="abstract-h">
+      <h2 id="abstract-h" class="front-label label"><span class="bi"><span lang="eu">Laburpena</span><span lang="en">Abstract</span></span></h2>
+      <p itemprop="abstract"><span class="sn" role="note"><!--cipher:abstract-hash--><span class="label">SHA-256 · <span lang="eu">Laburpena</span></span> <code class="hex">8a002f5a<wbr>804d725d<wbr>1737f8e4<wbr>6fdf1049<wbr>7aa46c8e<wbr>bd5af0d7<wbr>f01955ed<wbr>868ec383</code><!--/cipher:abstract-hash--></span>Private set intersection (<abbr title="private set intersection">PSI</abbr>) lets two parties, each holding a set, learn the elements they share and nothing more. It sits behind contact discovery in messaging apps, leaked-password checks and privacy-preserving advertising measurement. This monograph explains why the obvious approach (comparing hashes) fails, then builds up the three main protocol families: Diffie–Hellman PSI, PSI from oblivious pseudorandom functions, and PSI from homomorphic encryption. It also sets out what these protocols do and do not protect against.</p>
+    </section>
+
+    <nav class="toc" aria-labelledby="toc-h">
+      <h2 id="toc-h" class="label"><span class="bi"><span lang="eu">Aurkibidea</span><span lang="en">Contents</span></span></h2>
+      <ol>
+        <li><span>01</span><a href="#s1">The problem</a></li>
+        <li><span>02</span><a href="#s2">Why hashing is not enough</a></li>
+        <li><span>03</span><a href="#s3">Preliminaries</a></li>
+        <li><span>04</span><a href="#s4">Diffie–Hellman PSI</a></li>
+        <li><span>05</span><a href="#s5">PSI from oblivious pseudorandom functions</a></li>
+        <li><span>06</span><a href="#s6">PSI from homomorphic encryption</a></li>
+        <li><span>07</span><a href="#s7">What PSI does not promise</a></li>
+        <li><span>08</span><a href="#s8">Choosing a protocol</a></li>
+        <li><span>—</span><a href="#refs">References</a></li>
+        <li><span>—</span><a href="#kolofoia">Colophon</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <div class="sub" itemprop="articleBody">
+
+  <!-- ============================================================= § 01 -->
+  <section class="sub" id="s1" aria-labelledby="s1-h">
+    <header class="sec-head">
+      <span class="secno" aria-hidden="true">01</span>
+      <span class="label" lang="eu">Arazoa</span>
+      <h2 id="s1-h">The problem</h2>
+    </header>
+    <p class="dropcap">Two parties, Alice and Bob, each hold a private set. Alice holds <math><mi>X</mi></math> with <math><mi>n</mi></math> elements and Bob holds <math><mi>Y</mi></math> with <math><mi>m</mi></math> elements. Alice wants to compute the intersection of the two sets. She must learn nothing about the elements of <math><mi>Y</mi></math> outside the intersection, and Bob must learn nothing about <math><mi>X</mi></math> at all. The intersection is</p>
+
+    <div class="eq" id="eq-1">
+      <math display="block">
+        <semantics>
+          <mrow>
+            <mi>X</mi><mo>∩</mo><mi>Y</mi>
+            <mo>=</mo>
+            <mo>{</mo><mi>z</mi><mo>:</mo><mi>z</mi><mo>∈</mo><mi>X</mi><mspace width="0.3em"/><mtext>and</mtext><mspace width="0.3em"/><mi>z</mi><mo>∈</mo><mi>Y</mi><mo>}</mo>
+          </mrow>
+          <annotation encoding="application/x-tex">X \cap Y = \{\, z : z \in X \text{ and } z \in Y \,\}</annotation>
+        </semantics>
+      </math>
+      <span class="eq-num">(1)</span>
+    </div>
+
+    <p>The only things that may leak are the set sizes <math><mi>n</mi></math> and <math><mi>m</mi></math>.</p>
+
+    <p>The problem shows up wherever two organisations or devices need to match records they are not allowed, or not willing, to share:</p>
+    <ul>
+      <li><strong>Contact discovery.</strong> A messaging app wants to tell you which of your contacts already use it without uploading your address book.</li>
+      <li><strong>Compromised credentials.</strong> A browser checks whether your password appears in a breach corpus without disclosing the password.</li>
+      <li><strong>Advertising measurement.</strong> An advertiser and a publisher count how many people who saw an ad later bought the product, without exchanging customer lists.</li>
+      <li><strong>Public health and finance.</strong> Institutions cross-check watch lists or patient registries under strict data-protection rules.</li>
+    </ul>
+    <!--cipher:rule-s1--><div class="cipher-rule wide" aria-hidden="true"><svg class="gurutzea" width="13" height="13"><use href="/assets/gurutzea.svg#g"/></svg><span>§ 01 · SHA-256</span> <code>bc31cd8febabe6a3b29349183435de13f6651bae2767923d25915a91a1618652</code></div><!--/cipher:rule-s1-->
+  </section>
+
+  <!-- ============================================================= § 02 -->
+  <section class="sub" id="s2" aria-labelledby="s2-h">
+    <header class="sec-head">
+      <span class="secno" aria-hidden="true">02</span>
+      <span class="label" lang="eu">Laburpen-funtzioak ez dira nahikoa</span>
+      <h2 id="s2-h">Why hashing is not enough</h2>
+    </header>
+    <p>The usual first attempt is for Bob to send <math><mi>H</mi><mo>(</mo><mi>y</mi><mo>)</mo></math> for every <math><mi>y</mi><mo>∈</mo><mi>Y</mi></math>, where <math><mi>H</mi></math> is a cryptographic hash function such as <abbr title="Secure Hash Algorithm 256">SHA-256</abbr>. Alice hashes her own elements and compares. Hashes cannot be inverted, so this looks private.</p>
+
+    <p>It is not. A hash hides its input only when the input is hard to guess. Phone numbers, e-mail addresses and national identifiers come from small, enumerable universes. With a universe <math><mi>U</mi></math>, Alice can recover all of <math><mi>Y</mi></math> by brute force at a cost of</p>
+
+    <div class="eq" id="eq-2">
+      <math display="block">
+        <semantics>
+          <mrow>
+            <mrow><mo>|</mo><mi>U</mi><mo>|</mo></mrow>
+            <mspace width="0.3em"/><mtext>hash evaluations;</mtext><mspace width="1em"/>
+            <mrow><mo>|</mo><mi>U</mi><mo>|</mo></mrow><mo>≈</mo><msup><mn>10</mn><mn>10</mn></msup>
+            <mspace width="0.3em"/><mtext>for phone numbers.</mtext>
+          </mrow>
+          <annotation encoding="application/x-tex">|U| \text{ hash evaluations;}\quad |U| \approx 10^{10} \text{ for phone numbers.}</annotation>
+        </semantics>
+      </math>
+      <span class="eq-num">(2)</span>
+    </div>
+
+    <p><span class="sn" role="note"><span class="label">GPU</span>A single modern graphics card computes billions of SHA-256 hashes per second.</span>Ten billion SHA-256 evaluations take a few seconds on a single modern <abbr title="graphics processing unit">GPU</abbr>. Salting doesn’t help, because both sides need the same salt for the comparison to work. Hashing hides structure. It doesn’t hide <em>low-entropy</em> data.</p>
+
+    <!--cipher:dictionary--><details class="cipher-pair">
+<summary><span class="label">SHA-256 · <span lang="eu">Zifratua</span></span> <code class="hex">e6f555b2<wbr>b5ed23b9<wbr>5bd898b6<wbr>4730a548<wbr>822d92b0<wbr>b155d5ca<wbr>469adeb9<wbr>ae239be6</code></summary>
+<p><span class="label"><span lang="eu">Testu argia</span> · Plaintext</span> <code class="pt">+34 943 123 456</code>. A phone number has about ten digits, so this hash can be inverted by trying every possible number. Opening this box takes one click. Enumerating every Spanish phone number would take a laptop minutes.</p>
+</details><!--/cipher:dictionary-->
+
+    <p class="pull wide" aria-hidden="true">Hashing hides structure. It doesn’t hide low-entropy data.</p>
+
+    <aside class="note" aria-label="Note">
+      <span class="label"><span class="bi"><span lang="eu">Oharra</span><span lang="en">Note</span></span></span>
+      <p>PSI protocols remove the dictionary attack by making the value Alice compares depend on a secret that only Bob holds. Without Bob’s participation, Alice cannot test a guess.</p>
+    </aside>
+    <!--cipher:rule-s2--><div class="cipher-rule wide" aria-hidden="true"><svg class="gurutzea" width="13" height="13"><use href="/assets/gurutzea.svg#g"/></svg><span>§ 02 · SHA-256</span> <code>2469d7bb2868ec2a1269d3406c3226e31fe2e9ff2fe9bc6ed6fd526b444c09bd</code></div><!--/cipher:rule-s2-->
+  </section>
+
+  <!-- ============================================================= § 03 -->
+  <section class="sub" id="s3" aria-labelledby="s3-h">
+    <header class="sec-head">
+      <span class="secno" aria-hidden="true">03</span>
+      <span class="label" lang="eu">Oinarriak</span>
+      <h2 id="s3-h">Preliminaries</h2>
+    </header>
+    <p><span class="sn" role="note"><span class="label">Groups</span>ristretto255 is a prime-order group built on Curve25519. P-256 is the NIST curve used in the worked examples below.</span>Let <math><mi>𝔾</mi></math> be a cyclic group of prime order <math><mi>q</mi></math> with generator <math><mi>g</mi></math>. In practice this is an elliptic-curve group such as ristretto255 or P-256. We also need a hash function <math><mi>H</mi><mo>:</mo><msup><mrow><mo>{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>}</mo></mrow><mo>*</mo></msup><mo>→</mo><mi>𝔾</mi></math> that maps arbitrary strings to group elements. It is standardised as <em>hash-to-curve</em> in <abbr title="Request for Comments">RFC</abbr>&#160;9380 <a href="#ref-rfc9380">[9]</a>.</p>
+
+    <div class="definition" role="note" aria-label="Definition 1">
+      <span class="label"><span class="bi"><span lang="eu">Definizioa 1</span><span lang="en">Definition 1 · Decisional Diffie–Hellman</span></span></span>
+      <p>For uniformly random <math><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>∈</mo><msub><mi>ℤ</mi><mi>q</mi></msub></math>, no efficient algorithm can distinguish</p>
+      <div class="eq" id="eq-3">
+        <math display="block">
+          <semantics>
+            <mrow>
+              <mo>(</mo><mi>g</mi><mo>,</mo><msup><mi>g</mi><mi>a</mi></msup><mo>,</mo><msup><mi>g</mi><mi>b</mi></msup><mo>,</mo><msup><mi>g</mi><mrow><mi>a</mi><mi>b</mi></mrow></msup><mo>)</mo>
+              <mspace width="0.6em"/><msub><mo>≈</mo><mi>c</mi></msub><mspace width="0.6em"/>
+              <mo>(</mo><mi>g</mi><mo>,</mo><msup><mi>g</mi><mi>a</mi></msup><mo>,</mo><msup><mi>g</mi><mi>b</mi></msup><mo>,</mo><msup><mi>g</mi><mi>c</mi></msup><mo>)</mo>
+            </mrow>
+            <annotation encoding="application/x-tex">(g, g^a, g^b, g^{ab}) \;\approx_c\; (g, g^a, g^b, g^c)</annotation>
+          </semantics>
+        </math>
+        <span class="eq-num">(3)</span>
+      </div>
+      <p>where <math><msub><mo>≈</mo><mi>c</mi></msub></math> denotes computational indistinguishability.</p>
+    </div>
+
+    <p>Security is defined by comparison with an ideal world. In that world a trusted third party receives <math><mi>X</mi></math> and <math><mi>Y</mi></math> and returns <math><mi>X</mi><mo>∩</mo><mi>Y</mi></math> to Alice. A protocol is secure if anything a participant learns from a real run, it could also have computed from its own input and the ideal output. A <em>semi-honest</em> adversary follows the protocol but tries to learn more from the transcript. A <em>malicious</em> adversary may deviate arbitrarily.</p>
+    <!--cipher:rule-s3--><div class="cipher-rule wide" aria-hidden="true"><svg class="gurutzea" width="13" height="13"><use href="/assets/gurutzea.svg#g"/></svg><span>§ 03 · SHA-256</span> <code>b0eeb6443b6ed6b320940b263f1359adb833fb66d7b6658154c3c84a0959681d</code></div><!--/cipher:rule-s3-->
+  </section>
+
+  <!-- ============================================================= § 04 -->
+  <section class="sub" id="s4" aria-labelledby="s4-h">
+    <header class="sec-head">
+      <span class="secno" aria-hidden="true">04</span>
+      <span class="label" lang="eu">Diffie–Hellman PSI</span>
+      <h2 id="s4-h">Diffie–Hellman PSI</h2>
+    </header>
+    <p><span class="sn" role="note"><span class="label">[1] Meadows, 1986</span><i>IEEE Symposium on Security and Privacy.</i></span><span class="sn" role="note"><span class="label">[2] Huberman, Franklin &amp; Hogg, 1999</span><i>ACM Conference on Electronic Commerce.</i></span>The oldest PSI protocol traces back to Meadows <a href="#ref-meadows">[1]</a> and to Huberman, Franklin and Hogg <a href="#ref-hfh">[2]</a>. It rests on one algebraic fact: exponentiation in <math><mi>𝔾</mi></math> commutes.</p>
+
+    <div class="eq" id="eq-4">
+      <math display="block">
+        <semantics>
+          <mrow>
+            <msup><mrow><mo>(</mo><mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi>a</mi></msup><mo>)</mo></mrow><mi>b</mi></msup>
+            <mo>=</mo>
+            <mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mrow><mi>a</mi><mi>b</mi></mrow></msup>
+            <mo>=</mo>
+            <msup><mrow><mo>(</mo><mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi>b</mi></msup><mo>)</mo></mrow><mi>a</mi></msup>
+          </mrow>
+          <annotation encoding="application/x-tex">\bigl(H(x)^a\bigr)^b = H(x)^{ab} = \bigl(H(x)^b\bigr)^a</annotation>
+        </semantics>
+      </math>
+      <span class="eq-num">(4)</span>
+    </div>
+
+    <p>Alice picks a secret <math><mi>a</mi></math> and Bob a secret <math><mi>b</mi></math>, both uniform in <math><msub><mi>ℤ</mi><mi>q</mi></msub></math>. An element blinded by both exponents comes out the same whichever order the exponents were applied in. Without the exponents, however, a blinded value looks random. Figure&#160;1 shows the exchange.</p>
+
+    <figure class="wide" id="fig-1" aria-labelledby="fig-1-cap">
+      <svg class="diagram" viewBox="0 0 720 380" role="img" aria-labelledby="fig-1-t fig-1-d">
+        <title id="fig-1-t">Message flow of Diffie–Hellman private set intersection</title>
+        <desc id="fig-1-d">Alice holds set X and secret exponent a; Bob holds set Y and secret exponent b. Step 1: Alice sends H(x) raised to a for each x in X. Step 2: Bob returns those values raised to b, in the same order, and sends H(y) raised to b for each y in Y, shuffled. Step 3: Alice raises Bob's values to a and compares the two lists; equal values mark the intersection.</desc>
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" class="head"/>
+          </marker>
+        </defs>
+        <text x="90" y="40" text-anchor="middle" class="h">Alice</text>
+        <text x="90" y="62" text-anchor="middle" class="s">set <tspan class="m">X</tspan> · secret <tspan class="m">a</tspan></text>
+        <text x="630" y="40" text-anchor="middle" class="h">Bob</text>
+        <text x="630" y="62" text-anchor="middle" class="s">set <tspan class="m">Y</tspan> · secret <tspan class="m">b</tspan></text>
+        <line x1="90" y1="78" x2="90" y2="366" class="life"/>
+        <line x1="630" y1="78" x2="630" y2="366" class="life"/>
+
+        <text x="360" y="112" text-anchor="middle" class="n">PAUSOA 1 · STEP 1</text>
+        <text x="360" y="136" text-anchor="middle" class="lbl m">H(x)ᵃ  for every x ∈ X</text>
+        <line x1="100" y1="152" x2="620" y2="152" class="arr" marker-end="url(#ah)"/>
+
+        <text x="360" y="196" text-anchor="middle" class="n">PAUSOA 2 · STEP 2</text>
+        <text x="360" y="220" text-anchor="middle" class="lbl m">(H(x)ᵃ)ᵇ in order ·  H(y)ᵇ shuffled</text>
+        <line x1="620" y1="236" x2="100" y2="236" class="arr" marker-end="url(#ah)"/>
+
+        <text x="120" y="282" class="n">PAUSOA 3 · STEP 3 · LOCAL</text>
+        <line x1="110" y1="294" x2="610" y2="294" class="life"/>
+        <text x="360" y="322" text-anchor="middle" class="lbl">compute <tspan class="m">(H(y)ᵇ)ᵃ</tspan> and compare with <tspan class="m">H(x)ᵃᵇ</tspan></text>
+        <text x="360" y="346" text-anchor="middle" class="s">equal values mark elements of <tspan class="m">X ∩ Y</tspan> · only the dot is shared</text>
+        <line x1="110" y1="362" x2="610" y2="362" class="life"/>
+      </svg>
+      <figcaption id="fig-1-cap"><span class="bi"><span lang="eu">Irudia 1</span><span lang="en">Figure 1</span></span> Message flow of Diffie–Hellman PSI. Alice sends one message and Bob replies once. The intersection is found locally by Alice in step&#160;3.</figcaption>
+    </figure>
+
+    <ol>
+      <li>Alice sends <math><msub><mi>u</mi><mi>i</mi></msub><mo>=</mo><mi>H</mi><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><msup><mo>)</mo><mi>a</mi></msup></math> for each <math><msub><mi>x</mi><mi>i</mi></msub><mo>∈</mo><mi>X</mi></math>.</li>
+      <li>Bob replies with <math><msubsup><mi>u</mi><mi>i</mi><mi>b</mi></msubsup></math> in the original order, so Alice can tell which value belongs to which <math><msub><mi>x</mi><mi>i</mi></msub></math>. He also sends <math><msub><mi>v</mi><mi>j</mi></msub><mo>=</mo><mi>H</mi><mo>(</mo><msub><mi>y</mi><mi>j</mi></msub><msup><mo>)</mo><mi>b</mi></msup></math> for each <math><msub><mi>y</mi><mi>j</mi></msub><mo>∈</mo><mi>Y</mi></math>, randomly permuted.</li>
+      <li>Alice computes <math><msubsup><mi>v</mi><mi>j</mi><mi>a</mi></msubsup></math>. If <math><msubsup><mi>u</mi><mi>i</mi><mi>b</mi></msubsup><mo>=</mo><msubsup><mi>v</mi><mi>j</mi><mi>a</mi></msubsup></math> for some <math><mi>j</mi></math>, then <math><msub><mi>x</mi><mi>i</mi></msub><mo>∈</mo><mi>X</mi><mo>∩</mo><mi>Y</mi></math>.</li>
+    </ol>
+
+    <!--cipher:dh-psi--><div class="table-wrap wide cipher-table">
+<table>
+<caption><span class="bi"><span lang="eu">Adibide landua</span><span lang="en">Worked example</span></span> Diffie–Hellman PSI on NIST P-256. Alice holds 3 addresses and Bob holds 4. Each value is the x-coordinate of a curve point, in hex. The secrets are derived as <code>a = SHA-256("monografiak/01/alice") mod n</code> and <code>b = SHA-256("monografiak/01/bob") mod n</code>, so anyone can reproduce them with <code>tools/cipher.py</code>.</caption>
+<thead><tr><th scope="col">Step</th><th scope="col">Element</th><th scope="col">Value (hex)</th></tr></thead>
+<tbody>
+<tr><th scope="row">1 · Alice → Bob</th><td colspan="2">Blinded set <math><mi>H</mi><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><msup><mo>)</mo><mi>a</mi></msup></math></td></tr>
+<tr><td></td><td class="pt">amaia@example.eus</td><td><code class="hex">a45ae601<wbr>034b69b2<wbr>c14d4531<wbr>07c37078<wbr>ed73ca36<wbr>3b1ef956<wbr>d6e80a98<wbr>4eac6dba</code></td></tr>
+<tr><td></td><td class="pt">iker@example.eus</td><td><code class="hex">15b74120<wbr>08d0592e<wbr>b3863de2<wbr>09e4ba90<wbr>8deec40a<wbr>244800af<wbr>29f2c467<wbr>db7e9392</code></td></tr>
+<tr><td></td><td class="pt">nerea@example.eus</td><td><code class="hex">c955a3b2<wbr>70839582<wbr>a6c11116<wbr>ce7bebb7<wbr>14c6d5b3<wbr>1a7b5316<wbr>8eb0d375<wbr>9d237532</code></td></tr>
+<tr><th scope="row">2 · Bob → Alice</th><td colspan="2">Same values raised to <math><mi>b</mi></math>, in Alice’s order</td></tr>
+<tr><td></td><td class="pt">amaia@example.eus</td><td><code class="hex">4ef0db10<wbr>21d73d4a<wbr>6c00782d<wbr>b7f6b4cd<wbr>56d10121<wbr>bb00e1b9<wbr>625f4795<wbr>11ab8e12</code></td></tr>
+<tr><td></td><td class="pt">iker@example.eus</td><td><code class="hex">7d12c7a4<wbr>b6af8568<wbr>84c451c3<wbr>2d4bb269<wbr>324aa83d<wbr>24c756b0<wbr>1f92743a<wbr>bcab7d58</code></td></tr>
+<tr><td></td><td class="pt">nerea@example.eus</td><td><code class="hex">9f75988d<wbr>d25bc171<wbr>76749985<wbr>3c691a22<wbr>4ed44f14<wbr>35eaecd1<wbr>e9767c3b<wbr>5747e6c1</code></td></tr>
+<tr><th scope="row">2 · Bob → Alice</th><td colspan="2">Bob’s set <math><mi>H</mi><mo>(</mo><msub><mi>y</mi><mi>j</mi></msub><msup><mo>)</mo><mi>b</mi></msup></math>, sorted by value (hides his order)</td></tr>
+<tr><td></td><td class="pt"><math><msub><mi>v</mi><mn>1</mn></msub></math></td><td><code class="hex">182b9329<wbr>70ea1b8a<wbr>c1724b2d<wbr>3a671ca2<wbr>5750d269<wbr>b52fb39a<wbr>a5f03a1e<wbr>274a0e99</code></td></tr>
+<tr><td></td><td class="pt"><math><msub><mi>v</mi><mn>2</mn></msub></math></td><td><code class="hex">80efc23a<wbr>3ee9c1e0<wbr>ea0b9521<wbr>208042a1<wbr>43cb95a1<wbr>aa5a12fe<wbr>a45db9b3<wbr>ef994aa4</code></td></tr>
+<tr><td></td><td class="pt"><math><msub><mi>v</mi><mn>3</mn></msub></math></td><td><code class="hex">ab5de3c0<wbr>4bd33f28<wbr>08351e65<wbr>72cb61c9<wbr>9cb63c1c<wbr>666f4152<wbr>c023fe6d<wbr>eafe0b9a</code></td></tr>
+<tr><td></td><td class="pt"><math><msub><mi>v</mi><mn>4</mn></msub></math></td><td><code class="hex">ac8ec0ce<wbr>80e9d292<wbr>21542796<wbr>af502492<wbr>6e6b0492<wbr>7325e629<wbr>70385b16<wbr>af87cc28</code></td></tr>
+<tr><th scope="row">3 · Alice, locally</th><td colspan="2"><math><msubsup><mi>v</mi><mi>j</mi><mi>a</mi></msubsup></math>, compared with step 2</td></tr>
+<tr><td></td><td class="pt"><math><msubsup><mi>v</mi><mn>1</mn><mi>a</mi></msubsup></math> <span class="match">● nerea@example.eus</span></td><td><code class="hex">9f75988d<wbr>d25bc171<wbr>76749985<wbr>3c691a22<wbr>4ed44f14<wbr>35eaecd1<wbr>e9767c3b<wbr>5747e6c1</code></td></tr>
+<tr><td></td><td class="pt"><math><msubsup><mi>v</mi><mn>2</mn><mi>a</mi></msubsup></math> <span class="nomatch">no match</span></td><td><code class="hex">6128cfeb<wbr>3049af93<wbr>fb77de54<wbr>5e3ce3f9<wbr>ffb415dd<wbr>b3248749<wbr>f14e15f0<wbr>a1f45d1b</code></td></tr>
+<tr><td></td><td class="pt"><math><msubsup><mi>v</mi><mn>3</mn><mi>a</mi></msubsup></math> <span class="nomatch">no match</span></td><td><code class="hex">de82d74a<wbr>7f9fcfaa<wbr>30ebebf8<wbr>da4b1c2d<wbr>d476a3e5<wbr>ef99ed89<wbr>9ea47807<wbr>a4f44c6d</code></td></tr>
+<tr><td></td><td class="pt"><math><msubsup><mi>v</mi><mn>4</mn><mi>a</mi></msubsup></math> <span class="match">● iker@example.eus</span></td><td><code class="hex">7d12c7a4<wbr>b6af8568<wbr>84c451c3<wbr>2d4bb269<wbr>324aa83d<wbr>24c756b0<wbr>1f92743a<wbr>bcab7d58</code></td></tr>
+</tbody>
+</table>
+</div><!--/cipher:dh-psi-->
+
+    <p>Each party performs <math><mi>n</mi><mo>+</mo><mi>m</mi></math> exponentiations, and the parties exchange <math><mn>2</mn><mi>n</mi><mo>+</mo><mi>m</mi></math> group elements in total. Against semi-honest adversaries the protocol is secure under the <abbr title="Decisional Diffie–Hellman">DDH</abbr> assumption when <math><mi>H</mi></math> is modelled as a random oracle. Bob sees only values of the form <math><mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi>a</mi></msup></math>, which look random. Alice sees <math><mi>H</mi><mo>(</mo><mi>y</mi><msup><mo>)</mo><mi>b</mi></msup></math> for every <math><mi>y</mi></math>, but she cannot test a guess <math><msup><mi>y</mi><mo>′</mo></msup></math> without knowing <math><mi>b</mi></math>. That closes the dictionary attack from §&#8201;<a href="#s2">2</a>.</p>
+
+    <p class="pull wide right" aria-hidden="true">Without Bob’s participation, Alice cannot test a guess.</p>
+
+    <p><span class="sn" role="note"><span class="label">[7] Ion et al., 2020</span><i>IEEE EuroS&amp;P.</i> Private intersection-sum, deployed for advertising measurement.</span>The protocol fits in a page of code and needs only a standard elliptic-curve library. It still runs in production today, for example in Google’s <em>Private Join and Compute</em> <a href="#ref-ion">[7]</a>.</p>
+    <!--cipher:rule-s4--><div class="cipher-rule wide" aria-hidden="true"><svg class="gurutzea" width="13" height="13"><use href="/assets/gurutzea.svg#g"/></svg><span>§ 04 · SHA-256</span> <code>9eaa2f95d814554b83dff733df3c888b787edb41cbf27bbdb79bb9349eec81ef</code></div><!--/cipher:rule-s4-->
+  </section>
+
+  <!-- ============================================================= § 05 -->
+  <section class="sub" id="s5" aria-labelledby="s5-h">
+    <header class="sec-head">
+      <span class="secno" aria-hidden="true">05</span>
+      <span class="label" lang="eu">Funtzio sasiausazko itsuak</span>
+      <h2 id="s5-h">PSI from oblivious pseudorandom functions</h2>
+    </header>
+    <p>A pseudorandom function <math><msub><mi>F</mi><mi>k</mi></msub></math> is a keyed function whose outputs look random to anyone without <math><mi>k</mi></math>. It is <em>oblivious</em> (an <abbr title="oblivious pseudorandom function">OPRF</abbr>) when two parties evaluate it together, with the following roles:</p>
+
+    <div class="eq" id="eq-5">
+      <math display="block">
+        <semantics>
+          <mrow>
+            <munder><mrow><mo>(</mo><mi>k</mi><mo>)</mo></mrow><mtext>Bob</mtext></munder>
+            <mo>,</mo><mspace width="0.4em"/>
+            <munder><mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow><mtext>Alice</mtext></munder>
+            <mspace width="0.8em"/><mo>⟼</mo><mspace width="0.8em"/>
+            <munder><mrow><mo>(</mo><mo>⊥</mo><mo>)</mo></mrow><mtext>Bob</mtext></munder>
+            <mo>,</mo><mspace width="0.4em"/>
+            <munder><mrow><mo>(</mo><msub><mi>F</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>)</mo></mrow><mtext>Alice</mtext></munder>
+          </mrow>
+          <annotation encoding="application/x-tex">\underset{\text{Bob}}{(k)},\ \underset{\text{Alice}}{(x)} \;\longmapsto\; \underset{\text{Bob}}{(\bot)},\ \underset{\text{Alice}}{(F_k(x))}</annotation>
+        </semantics>
+      </math>
+      <span class="eq-num">(5)</span>
+    </div>
+
+    <p>Bob learns nothing and Alice learns only the output. PSI follows directly. Bob publishes <math><mo>{</mo><msub><mi>F</mi><mi>k</mi></msub><mo>(</mo><mi>y</mi><mo>)</mo><mo>:</mo><mi>y</mi><mo>∈</mo><mi>Y</mi><mo>}</mo></math>. Alice obtains <math><msub><mi>F</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo></math> for each of her elements through the OPRF and checks for membership.</p>
+
+    <p><span class="sn" role="note"><span class="label">[10] RFC 9497, 2023</span>Oblivious pseudorandom functions using prime-order groups.</span>The Diffie–Hellman construction is itself an OPRF, standardised in RFC&#160;9497 <a href="#ref-rfc9497">[10]</a>:</p>
+
+    <div class="eq" id="eq-6">
+      <math display="block">
+        <semantics>
+          <mrow>
+            <msub><mi>F</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo>
+            <mo>=</mo>
+            <msup><mi>H</mi><mo>′</mo></msup>
+            <mrow><mo>(</mo><mi>x</mi><mo>,</mo><mspace width="0.2em"/><mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi>k</mi></msup><mo>)</mo></mrow>
+          </mrow>
+          <annotation encoding="application/x-tex">F_k(x) = H'\bigl(x,\, H(x)^k\bigr)</annotation>
+        </semantics>
+      </math>
+      <span class="eq-num">(6)</span>
+    </div>
+
+    <p>Alice never reveals <math><mi>x</mi></math>. She sends the blinded value <math><mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi>r</mi></msup></math> for a random <math><mi>r</mi></math>, Bob applies his key to get <math><msup><mrow><mo>(</mo><mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi>r</mi></msup><mo>)</mo></mrow><mi>k</mi></msup></math>, and Alice removes the blind by raising the result to <math><msup><mi>r</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mspace width="0.2em"/><mo>mod</mo><mspace width="0.2em"/><mi>q</mi></math>.</p>
+
+    <!--cipher:oprf--><div class="table-wrap wide cipher-table">
+<table>
+<caption><span class="bi"><span lang="eu">Adibide landua</span><span lang="en">Worked example</span></span> One OPRF evaluation on P-256. The output is SHA-256 of the input followed by the x-coordinate of <math><mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi>k</mi></msup></math>, a simplified form of RFC 9497. The scalars are derived as <code>k = SHA-256("monografiak/01/oprf-key") mod n</code> and <code>r = SHA-256("monografiak/01/oprf-blind") mod n</code>. The unblinded value equals the one Bob would compute directly from <math><mi>x</mi></math>, but Bob never sees <math><mi>x</mi></math>.</caption>
+<thead><tr><th scope="col">Party</th><th scope="col">Value</th><th scope="col">Hex</th></tr></thead>
+<tbody>
+<tr><th scope="row">Alice</th><td class="pt">Input</td><td><span class="pt">iker@example.eus</span></td></tr>
+<tr><th scope="row">Alice</th><td class="pt"><math><mi>H</mi><mo>(</mo><mi>x</mi><mo>)</mo></math></td><td><code class="hex">c02a9f10<wbr>52338597<wbr>5bb69d61<wbr>4e75394a<wbr>44323824<wbr>4a10fb8f<wbr>8d14b5ca<wbr>4a1eb91e</code></td></tr>
+<tr><th scope="row">Alice → Bob</th><td class="pt">Blinded <math><mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi>r</mi></msup></math></td><td><code class="hex">cccf30ae<wbr>4aaba53b<wbr>db31b923<wbr>d8151f6f<wbr>03561f8f<wbr>79d1decf<wbr>fe944a5a<wbr>9f209974</code></td></tr>
+<tr><th scope="row">Bob → Alice</th><td class="pt">Evaluated <math><msup><mrow><mo>(</mo><mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi>r</mi></msup><mo>)</mo></mrow><mi>k</mi></msup></math></td><td><code class="hex">54d4290b<wbr>b849cd33<wbr>fad0d631<wbr>3bec2add<wbr>72ef778a<wbr>f39ef4b6<wbr>e43e4089<wbr>38d3462d</code></td></tr>
+<tr><th scope="row">Alice</th><td class="pt">Unblinded <math><mi>H</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi>k</mi></msup></math></td><td><code class="hex">17835748<wbr>2eda2f37<wbr>ab969f4b<wbr>1d627db4<wbr>11632a61<wbr>fa8eaf0f<wbr>45d23a23<wbr>b93fed0b</code></td></tr>
+<tr><th scope="row">Alice</th><td class="pt">Output <math><msub><mi>F</mi><mi>k</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo></math></td><td><code class="hex">abd25c28<wbr>9cd8ab72<wbr>3f310911<wbr>da2cb0ad<wbr>e90f75cb<wbr>b977405e<wbr>40bad3aa<wbr>d87ff942</code></td></tr>
+</tbody>
+</table>
+</div><!--/cipher:oprf-->
+
+    <p><span class="sn" role="note"><span class="label">[4] Pinkas, Schneider &amp; Zohner, 2014</span><i>USENIX Security.</i></span><span class="sn" role="note"><span class="label">[5] Kolesnikov et al., 2016</span><i>ACM CCS.</i> Batched OPRF.</span><span class="sn" role="note"><span class="label">[8] Rindal &amp; Schoppmann, 2021</span><i>EUROCRYPT.</i> VOLE-PSI.</span>For very large sets, the fastest protocols avoid public-key operations on each element. Pinkas, Schneider and Zohner <a href="#ref-psz">[4]</a> built PSI from <em>oblivious transfer extension</em>, which turns a small number of public-key operations into millions of cheap symmetric ones. Kolesnikov et al. <a href="#ref-kkrt">[5]</a> recast this as a batched OPRF. Later work based on vector oblivious linear evaluation (<abbr title="vector oblivious linear evaluation">VOLE</abbr>) <a href="#ref-vole">[8]</a> reduces communication further. These protocols intersect sets of millions of elements in seconds on a fast network.</p>
+    <!--cipher:rule-s5--><div class="cipher-rule wide" aria-hidden="true"><svg class="gurutzea" width="13" height="13"><use href="/assets/gurutzea.svg#g"/></svg><span>§ 05 · SHA-256</span> <code>16005277d4a0232d106a64a97033affea310a06f08e327b8828456dfcaa5f396</code></div><!--/cipher:rule-s5-->
+  </section>
+
+  <!-- ============================================================= § 06 -->
+  <section class="sub" id="s6" aria-labelledby="s6-h">
+    <header class="sec-head">
+      <span class="secno" aria-hidden="true">06</span>
+      <span class="label" lang="eu">Zifratze homomorfikoa</span>
+      <h2 id="s6-h">PSI from homomorphic encryption</h2>
+    </header>
+    <p><span class="sn" role="note"><span class="label">[3] Freedman, Nissim &amp; Pinkas, 2004</span><i>EUROCRYPT.</i></span>Freedman, Nissim and Pinkas <a href="#ref-fnp">[3]</a> encode Alice’s set as the roots of a polynomial:</p>
+
+    <div class="eq" id="eq-7">
+      <math display="block">
+        <semantics>
+          <mrow>
+            <mi>P</mi><mo>(</mo><mi>z</mi><mo>)</mo>
+            <mo>=</mo>
+            <munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover>
+            <mo>(</mo><mi>z</mi><mo>−</mo><msub><mi>x</mi><mi>i</mi></msub><mo>)</mo>
+            <mo>=</mo>
+            <munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover>
+            <msub><mi>α</mi><mi>i</mi></msub><msup><mi>z</mi><mi>i</mi></msup>
+          </mrow>
+          <annotation encoding="application/x-tex">P(z) = \prod_{i=1}^{n} (z - x_i) = \sum_{i=0}^{n} \alpha_i z^i</annotation>
+        </semantics>
+      </math>
+      <span class="eq-num">(7)</span>
+    </div>
+
+    <p>Alice encrypts the coefficients <math><msub><mi>α</mi><mi>i</mi></msub></math> under an additively homomorphic scheme such as Paillier and sends them to Bob. Bob can evaluate the encrypted polynomial at his own points without decrypting anything. For each <math><mi>y</mi><mo>∈</mo><mi>Y</mi></math>, with fresh randomness <math><mi>ρ</mi></math>, he returns</p>
+
+    <div class="eq" id="eq-8">
+      <math display="block">
+        <semantics>
+          <mrow><mi>Enc</mi><mo>(</mo><mi>ρ</mi><mo>·</mo><mi>P</mi><mo>(</mo><mi>y</mi><mo>)</mo><mo>+</mo><mi>y</mi><mo>)</mo></mrow>
+          <annotation encoding="application/x-tex">\mathrm{Enc}\bigl(\rho \cdot P(y) + y\bigr)</annotation>
+        </semantics>
+      </math>
+      <span class="eq-num">(8)</span>
+    </div>
+
+    <p>If <math><mi>y</mi><mo>∈</mo><mi>X</mi></math> then <math><mi>P</mi><mo>(</mo><mi>y</mi><mo>)</mo><mo>=</mo><mn>0</mn></math> and Alice decrypts <math><mi>y</mi></math> itself. Otherwise she decrypts a uniformly random value. Bucketing with hashing keeps the cost from growing as <math><mi>n</mi><mo>·</mo><mi>m</mi></math>.</p>
+
+    <p><span class="sn" role="note"><span class="label">[6] Chen, Laine &amp; Rindal, 2017</span><i>ACM CCS.</i> Unbalanced PSI from leveled HE.</span>Modern lattice-based homomorphic encryption makes this approach effective for <em>unbalanced</em> PSI, where a phone with a few hundred contacts queries a server holding hundreds of millions of records. Chen, Laine and Rindal <a href="#ref-clr">[6]</a> give a protocol whose communication is linear in the small set and only logarithmic in the large one.</p>
+    <!--cipher:rule-s6--><div class="cipher-rule wide" aria-hidden="true"><svg class="gurutzea" width="13" height="13"><use href="/assets/gurutzea.svg#g"/></svg><span>§ 06 · SHA-256</span> <code>6b4d2981a9961515c3160d2023b318869c82651865ba7b2ebe4aec824e158731</code></div><!--/cipher:rule-s6-->
+  </section>
+
+  <!-- ============================================================= § 07 -->
+  <section class="sub" id="s7" aria-labelledby="s7-h">
+    <header class="sec-head">
+      <span class="secno" aria-hidden="true">07</span>
+      <span class="label" lang="eu">PSIk agintzen ez duena</span>
+      <h2 id="s7-h">What PSI does not promise</h2>
+    </header>
+    <p>PSI computes a function. It does not judge whether revealing that function’s output is wise. Three limits are worth stating plainly:</p>
+    <ol>
+      <li><strong>Input choice is free.</strong> No protocol stops Alice from putting every phone number in a city into <math><mi>X</mi></math>. The output then reveals exactly which of those numbers are in <math><mi>Y</mi></math>. Deployments defend against this outside the cryptography: they cap set sizes, rate-limit queries, or attest the client.</li>
+      <li><strong>Sizes leak.</strong> Standard protocols reveal <math><mi>n</mi></math> and <math><mi>m</mi></math>. Padding with dummy elements hides the true sizes at extra cost.</li>
+      <li><strong>The output may be too much.</strong> Often only the size <math><mrow><mo>|</mo><mi>X</mi><mo>∩</mo><mi>Y</mi><mo>|</mo></mrow></math> (PSI-cardinality) or an aggregate over matched records (PSI-sum <a href="#ref-ion">[7]</a>) is needed. Asking for the narrower function is the cheapest privacy gain there is.</li>
+    </ol>
+
+    <p class="pull wide" aria-hidden="true">Asking for the narrower function is the cheapest privacy gain there is.</p>
+    <!--cipher:rule-s7--><div class="cipher-rule wide" aria-hidden="true"><svg class="gurutzea" width="13" height="13"><use href="/assets/gurutzea.svg#g"/></svg><span>§ 07 · SHA-256</span> <code>95c774adefe3442854c93d071c6ac62592380f436d9cf1e69f2909ac3676832b</code></div><!--/cipher:rule-s7-->
+  </section>
+
+  <!-- ============================================================= § 08 -->
+  <section class="sub" id="s8" aria-labelledby="s8-h">
+    <header class="sec-head">
+      <span class="secno" aria-hidden="true">08</span>
+      <span class="label" lang="eu">Protokoloa aukeratzea</span>
+      <h2 id="s8-h">Choosing a protocol</h2>
+    </header>
+    <div class="table-wrap wide">
+      <table>
+        <caption><span class="bi"><span lang="eu">Taula 1</span><span lang="en">Table 1</span></span> The main PSI families compared qualitatively. Concrete performance depends on the implementation, the network and the security model.</caption>
+        <thead>
+          <tr><th scope="col">Family</th><th scope="col">Core primitive</th><th scope="col">Communication</th><th scope="col">Best suited to</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Diffie–Hellman <a href="#ref-meadows">[1]</a> <a href="#ref-hfh">[2]</a></th><td>Group exponentiation</td><td>Linear, in group elements</td><td>Simplicity, low bandwidth, small to medium sets</td></tr>
+          <tr><th scope="row">OT / VOLE OPRF <a href="#ref-kkrt">[5]</a> <a href="#ref-vole">[8]</a></th><td>Symmetric crypto + OT extension</td><td>Linear, small constants</td><td>Very large balanced sets on fast networks</td></tr>
+          <tr><th scope="row">Lattice HE <a href="#ref-clr">[6]</a></th><td>Leveled homomorphic encryption</td><td>Linear in small set, logarithmic in large</td><td>Unbalanced: light client, huge server</td></tr>
+          <tr><th scope="row">Polynomial / Paillier <a href="#ref-fnp">[3]</a></th><td>Additive homomorphic encryption</td><td>Linear, in ciphertexts</td><td>Historical foundation; teaching</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Diffie–Hellman PSI over a modern curve is the right default for most first deployments. It is easy to audit, it is built from standardised parts (RFC&#160;9380, RFC&#160;9497), and its cost is predictable. Move to OT- or VOLE-based protocols when the sets reach millions of elements, and to homomorphic encryption when one side is far smaller than the other.&#8195;<svg class="gurutzea" width="14" height="14" aria-hidden="true" style="vertical-align:-1px"><use href="/assets/gurutzea.svg#g"/></svg></p>
+    <!--cipher:rule-s8--><div class="cipher-rule wide" aria-hidden="true"><svg class="gurutzea" width="13" height="13"><use href="/assets/gurutzea.svg#g"/></svg><span>§ 08 · SHA-256</span> <code>0b2e00aadd469017262ce6adab3870f3c8015b911ec2f911e43012fe4bd4c3f0</code></div><!--/cipher:rule-s8-->
+  </section>
+
+  </div>
+
+  <!-- ========================================================== REFERENCES -->
+  <section id="refs" class="references sub" aria-labelledby="refs-h">
+    <header class="sec-head">
+      <h2 id="refs-h" class="label"><span class="bi"><span lang="eu">Erreferentziak</span><span lang="en">References</span></span></h2>
+    </header>
+    <ol>
+      <li id="ref-meadows">C. Meadows. “A More Efficient Cryptographic Matchmaking Protocol for Use in the Absence of a Continuously Available Third Party.” <i>IEEE Symposium on Security and Privacy</i>, 1986.</li>
+      <li id="ref-hfh">B. A. Huberman, M. Franklin, T. Hogg. “Enhancing Privacy and Trust in Electronic Communities.” <i>ACM Conference on Electronic Commerce</i>, 1999.</li>
+      <li id="ref-fnp">M. J. Freedman, K. Nissim, B. Pinkas. “Efficient Private Matching and Set Intersection.” <i>EUROCRYPT</i>, 2004.</li>
+      <li id="ref-psz">B. Pinkas, T. Schneider, M. Zohner. “Faster Private Set Intersection Based on OT Extension.” <i>USENIX Security Symposium</i>, 2014.</li>
+      <li id="ref-kkrt">V. Kolesnikov, R. Kumaresan, M. Rosulek, N. Trieu. “Efficient Batched Oblivious PRF with Applications to Private Set Intersection.” <i>ACM CCS</i>, 2016.</li>
+      <li id="ref-clr">H. Chen, K. Laine, P. Rindal. “Fast Private Set Intersection from Homomorphic Encryption.” <i>ACM CCS</i>, 2017.</li>
+      <li id="ref-ion">M. Ion, B. Kreuter, A. E. Nergiz, S. Patel, S. Saxena, K. Seth, M. Raykova, D. Shanahan, M. Yung. “On Deploying Secure Computing: Private Intersection-Sum-with-Cardinality.” <i>IEEE EuroS&amp;P</i>, 2020.</li>
+      <li id="ref-vole">P. Rindal, P. Schoppmann. “VOLE-PSI: Fast OPRF and Circuit-PSI from Vector-OLE.” <i>EUROCRYPT</i>, 2021.</li>
+      <li id="ref-rfc9380">A. Faz-Hernández, S. Scott, N. Sullivan, R. S. Wahby, C. A. Wood. “Hashing to Elliptic Curves.” <a href="https://www.rfc-editor.org/rfc/rfc9380">RFC 9380</a>, 2023.</li>
+      <li id="ref-rfc9497">A. Davidson, A. Faz-Hernández, N. Sullivan, C. A. Wood. “Oblivious Pseudorandom Functions (OPRFs) Using Prime-Order Groups.” <a href="https://www.rfc-editor.org/rfc/rfc9497">RFC 9497</a>, 2023.</li>
+    </ol>
+  </section>
+
+  <section class="cite sub" aria-labelledby="cite-h">
+    <header class="sec-head">
+      <h2 id="cite-h" class="label"><span class="bi"><span lang="eu">Nola aipatu</span><span lang="en">How to cite</span></span></h2>
+    </header>
+    <pre><code>@misc{monografiak-01-2026,
+  title     = {XYZ: Cryptography and Private Set Intersection Protocols},
+  author    = {[YOUR FULL NAME]},
+  year      = {2026},
+  month     = oct,
+  number    = {01},
+  series    = {Monografia},
+  publisher = {monografiak.works},
+  url       = {https://monografiak.works/01/},
+  note      = {Version 1.0. Text drafted by Claude (Anthropic). Licensed under CC BY-NC 4.0; commercial use requires written permission}
+}</code></pre>
+  </section>
+
+  <!-- ============================================================ COLOPHON -->
+  <section id="kolofoia" class="colophon sub" aria-labelledby="kolofoia-h">
+    <svg class="ornament gurutzea" width="40" height="40" aria-hidden="true"><use href="/assets/gurutzea.svg#g"/></svg>
+    <h2 id="kolofoia-h"><span class="bi"><span lang="eu">Kolofoia</span><span lang="en">Colophon</span></span></h2>
+
+    <div class="wide"><!--cipher:fingerprint--><figure class="fingerprint">
+<div class="hexgrid" aria-hidden="true"><span>8a002f5a804d725d1737f8e46fdf10497aa46c8ebd5af0d7f01955ed868ec383</span><span>bc31cd8febabe6a3b29349183435de13f6651bae2767923d25915a91a1618652</span><span>2469d7bb2868ec2a1269d3406c3226e31fe2e9ff2fe9bc6ed6fd526b444c09bd</span><span>b0eeb6443b6ed6b320940b263f1359adb833fb66d7b6658154c3c84a0959681d</span></div>
+<p class="fp" aria-label="SHA-256 fingerprint fa4d593fca67081cf14e9a289f9b7465efd7b92f887b98ed3086c919e3e47779"><code><span>fa4d593fca67081c</span><span>f14e9a289f9b7465</span><span>efd7b92f887b98ed</span><span>3086c919e3e47779</span></code></p>
+<div class="hexgrid" aria-hidden="true"><span>9eaa2f95d814554b83dff733df3c888b787edb41cbf27bbdb79bb9349eec81ef</span><span>16005277d4a0232d106a64a97033affea310a06f08e327b8828456dfcaa5f396</span><span>6b4d2981a9961515c3160d2023b318869c82651865ba7b2ebe4aec824e158731</span><span>95c774adefe3442854c93d071c6ac62592380f436d9cf1e69f2909ac3676832b</span><span>0b2e00aadd469017262ce6adab3870f3c8015b911ec2f911e43012fe4bd4c3f0</span></div>
+<figcaption><span class="bi"><span lang="eu">Hatz-marka</span><span lang="en">Fingerprint</span></span> SHA-256 of the canonical source, <a href="/01/monografia-01.md">monografia-01.md</a>. Verify with <code>shasum -a 256 monografia-01.md</code>. The surrounding rows are the hashes of the abstract and of each section.</figcaption>
+</figure><!--/cipher:fingerprint--></div>
+
+    <dl>
+      <div><dt><span class="bi"><span lang="eu">Edizioa</span><span lang="en">Edition</span></span></dt>
+        <dd>Monografia 01<span class="sep">·</span>Version 1.0<span class="sep">·</span>Published <time datetime="2026-10-10">10.10.2026</time><span class="sep">·</span>Expires <time datetime="2027-10-10">10.10.2027</time>. Each monograph expires one year after publication, on purpose.</dd></div>
+      <div><dt><span class="bi"><span lang="eu">Sinadura</span><span lang="en">Signature</span></span></dt>
+        <dd>[YOUR FULL NAME] — <span class="placeholder">[PLACEHOLDER: PGP signature of monografia-01.md and key fingerprint]</span></dd></div>
+      <div><dt><span class="bi"><span lang="eu">Hatz-marka</span><span lang="en">Fingerprint</span></span></dt>
+        <dd>SHA-256 of <a href="/01/monografia-01.md">monografia-01.md</a>, shown above and also published in <a href="/01/monografia-01.md.sha256">monografia-01.md.sha256</a>.</dd></div>
+      <div><dt><span class="bi"><span lang="eu">Denbora-zigilua</span><span lang="en">Timestamp</span></span></dt>
+        <dd>OpenTimestamps proof on Bitcoin — <span class="placeholder">[PLACEHOLDER: monografia-01.md.ots]</span></dd></div>
+      <div><dt><span class="bi"><span lang="eu">Kopia iraunkorrak</span><span lang="en">Permanent copies</span></span></dt>
+        <dd>Arweave <span class="placeholder">[PLACEHOLDER: transaction ID]</span><span class="sep">·</span>IPFS <span class="placeholder">[PLACEHOLDER: CID]</span></dd></div>
+      <div><dt><span class="bi"><span lang="eu">DOI</span><span lang="en">Zenodo</span></span></dt>
+        <dd><span class="placeholder">[PLACEHOLDER: 10.5281/zenodo.XXXXXXX]</span></dd></div>
+      <div><dt><span class="bi"><span lang="eu">Bertsioen historia</span><span lang="en">Version history</span></span></dt>
+        <dd><a href="https://github.com/javierjaimes/Monografiak/commits/main">github.com/javierjaimes/Monografiak/commits/main</a></dd></div>
+      <div><dt><span class="bi"><span lang="eu">Jatorria</span><span lang="en">Provenance</span></span></dt>
+        <dd>The text was drafted by Claude, an AI model by Anthropic, at the publisher’s request. It is not the author’s original writing. The worked values are computed by <code>tools/cipher.py</code> and can be reproduced.</dd></div>
+      <div><dt><span class="bi"><span lang="eu">Lizentzia</span><span lang="en">License</span></span></dt>
+        <dd><a href="https://creativecommons.org/licenses/by-nc/4.0/" rel="license">CC BY-NC 4.0</a>. Share and adapt with attribution, for non-commercial use only. Commercial use, including training commercial AI models, requires written permission from the author. <a href="/license/">Details</a>.</dd></div>
+      <div><dt><span class="bi"><span lang="eu">Tipografia</span><span lang="en">Typography</span></span></dt>
+        <dd>Gasoek One, Archivo, Source Serif 4 and IBM Plex Mono, all under the SIL Open Font License. Mathematics in native MathML.</dd></div>
+    </dl>
+  </section>
+
+</article>
+</main>
+
+<footer class="site-footer">
+  <p>© 2026 [YOUR FULL NAME]<span class="sep">·</span>monografiak.works<span class="sep">·</span>Licensed <a href="https://creativecommons.org/licenses/by-nc/4.0/" rel="license">CC BY-NC 4.0</a>. Non-commercial use with attribution. Commercial use, including training commercial AI models, requires written permission. <a href="/license/">License</a>.</p>
+  <p>An independent publication: no ads, no trackers, no cookies, no JavaScript.<span class="sep">·</span><a href="/" lang="eu">Lanak</a><span class="sep">·</span><a href="/license/" lang="eu">Lizentzia</a></p>
+</footer>
+</body>
+</html>

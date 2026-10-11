@@ -1,29 +1,32 @@
-# monografiak.works — open to every crawler, including AI crawlers.
-# Content is licensed CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
-# Please attribute "monografiak.works" with a link to the canonical URL.
+# monografiak.works
+# Works are licensed CC BY-NC 4.0: https://creativecommons.org/licenses/by-nc/4.0/
+# Search engines and archives are welcome.
+# Use of these works to train commercial AI models is not permitted without permission.
+# See https://monografiak.works/license/ and https://monografiak.works/ai.txt
 
-User-agent: *
-Allow: /
-
-# Explicitly welcomed AI and archive crawlers
+# AI training and AI-agent crawlers: disallowed
 User-agent: GPTBot
-User-agent: OAI-SearchBot
-User-agent: ChatGPT-User
 User-agent: ClaudeBot
-User-agent: Claude-SearchBot
-User-agent: Claude-User
 User-agent: anthropic-ai
+User-agent: CCBot
 User-agent: Google-Extended
 User-agent: Applebot-Extended
 User-agent: PerplexityBot
-User-agent: CCBot
 User-agent: Meta-ExternalAgent
-User-agent: Amazonbot
 User-agent: Bytespider
 User-agent: cohere-ai
-User-agent: DuckAssistBot
+User-agent: Amazonbot
 User-agent: MistralAI-User
+Disallow: /
+
+# Search engines and archives: allowed
+User-agent: Googlebot
+User-agent: Bingbot
 User-agent: ia_archiver
+Allow: /
+
+# Everyone else
+User-agent: *
 Allow: /
 
 Sitemap: https://monografiak.works/sitemap.xml

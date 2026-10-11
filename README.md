@@ -1,80 +1,64 @@
 # monografiak.works
 
-An independent press for monographs. This is a static site served by GitHub Pages at <https://monografiak.works>, with no build step, no JavaScript and no web fonts.
+*Ideia bat. Urte bat. Sinadura bat.* One idea. One year. One signature.
+
+An independent press for monographs, served by GitHub Pages at <https://monografiak.works>. The site is plain HTML and one stylesheet, with no JavaScript, no build step to view it, and self-hosted fonts.
 
 ## Layout
 
 ```
-/                    index of works
-/xyz/                Monografiak Nº 1 — XYZ (Cryptography & PSI)
-/xyz/xyz.md          plain-text source (Markdown + TeX) for readers, crawlers and LLMs
-/xyz/figures/        figures (SVG preferred, with <title>/<desc>)
-/license/            CC BY 4.0 statement
-/assets/style.css    the only stylesheet
-/assets/lauburu.svg  the mark (ikurriña red)
-robots.txt, sitemap.xml, llms.txt, CNAME, .nojekyll, 404.html
+/                         cover: wordmark, motto, numbered contents
+/01/                      Monografia 01 · XYZ (Cryptography & PSI)
+/01/monografia-01.md      canonical source (Markdown + TeX); its SHA-256 is the fingerprint
+/01/monografia-01.md.sha256
+/xyz/                     redirect to /01/ (meta refresh + canonical)
+/license/                 CC BY-NC 4.0 statement
+/assets/style.css         the only stylesheet
+/assets/fonts/            Gasoek One, Archivo, Source Serif 4, IBM Plex Mono (latin woff2 + OFL)
+/assets/gurutzea.svg      the mark (symbol #g), used as favicon, end mark and section ornament
+/tools/cipher.py          computes every hash and protocol value printed on the site
+robots.txt  ai.txt  llms.txt  sitemap.xml  .well-known/tdmrep.json  CNAME  .nojekyll  404.html
 ```
 
-## Publishing
+## Editing a monograph
 
-1. Push this folder to a GitHub repository.
-2. Go to **Settings → Pages → Build and deployment** and choose *Deploy from a branch*, `main`, `/ (root)`.
-3. In your DNS, point `monografiak.works` at GitHub Pages: four `A` records (185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153), and optionally a `CNAME` for `www` to `<user>.github.io`. Then enable **Enforce HTTPS**.
+1. Edit the text in **both** `01/monografia-01.md` (canonical) and `01/index.html`.
+2. Run `python3 tools/cipher.py` from the repo root. It recomputes the section hashes, the abstract hash, the fingerprint and the worked P-256 examples, and rewrites the `<!--cipher:NAME-->…<!--/cipher:NAME-->` regions in the HTML. It needs only the Python standard library.
+3. Commit and push. Pages redeploys in about 30 seconds.
 
-To preview locally, run `python3 -m http.server` and open <http://localhost:8000>. Paths are root-relative, so open the site through a server rather than as `file://` URLs.
+The fingerprint changes whenever the Markdown changes. Re-sign and re-timestamp after any edit.
 
-## Adding a work
+## Adding Monografia 02
 
-1. Copy `xyz/` to `<slug>/` and edit `index.html`: the `<title>`, the meta description, `canonical`, the `citation_*` / `dc.*` / Open Graph tags and the JSON-LD.
-2. Write `<slug>/<slug>.md` as the plain-text mirror.
-3. Add the work to `/index.html` (both the list and the JSON-LD `hasPart`), `/sitemap.xml` and `/llms.txt`.
+Copy `01/` to `02/`, rename the source to `monografia-02.md`, and update the metadata (`citation_*`, `dc.*`, JSON-LD, dates, and an expiry one year after publication). Add the new paths to `PAGES` and `SOURCE` in `tools/cipher.py`, or generalise them. Then add the work to `/index.html`, `sitemap.xml` and `llms.txt`.
 
-## Blocks
+A Basque edition goes at `/01/eu/index.html` with `<html lang="eu">`. Link the two editions with `<link rel="alternate" hreflang="eu|en">` once it exists.
 
-**Text** — normal HTML: `<p>`, `<h2><span class="secno">2</span>Title</h2>`, lists, `<blockquote>`.
+## The three voices
 
-**Note / definition**
+| Voice | Font | Use |
+|---|---|---|
+| Big | Gasoek One | `.numero`, `.headline`, `.display-eu`, `.pull`, `.dropcap`, section `h2` |
+| Small | Archivo, 11–13px, uppercase, tracked | `.label`, `.rubric`, `.byline`, `.running`, captions, table heads, `.sn` sidenotes |
+| Cipher | IBM Plex Mono | `.hex`, `.cipher-rule`, `.cipher-table`, `.cipher-pair`, `.fingerprint` (real values only) |
 
-```html
-<aside class="note" aria-label="Note"><p><span class="label">Note.</span> …</p></aside>
-<div class="definition" role="note" aria-label="Definition 1"><p><span class="label">Definition 1.</span> …</p></div>
-```
+Body text is Source Serif 4, 19–21px, line-height 1.55, with a 66ch measure. The palette is paper `#F3EBDD`, ink `#16120F` and muted `#5A5248`, and nothing else.
 
-**Image / figure.** Always include `alt`, plus a caption that adds information beyond the alt text.
+### Blocks
 
-```html
-<figure id="fig-2" aria-labelledby="fig-2-cap">
-  <img src="/slug/figures/name.svg" width="720" height="400" loading="lazy" alt="…">
-  <figcaption id="fig-2-cap"><b>Figure 2.</b> …</figcaption>
-</figure>
-```
+- **Bilingual label** (Euskara first, English below): `<span class="bi"><span lang="eu">Aurkibidea</span><span lang="en">Contents</span></span>`
+- **Section:** `<section class="sub">` holding `<header class="sec-head"><span class="secno" aria-hidden="true">01</span><span class="label" lang="eu">…</span><h2>…</h2></header>`
+- **Sidenote:** put `<span class="sn" role="note">…</span>` *inside* a paragraph. It floats into the right margin on wide screens and sits inline on narrow ones.
+- **Pull quote:** `<p class="pull wide" aria-hidden="true">…</p>`. It duplicates body text, so it is hidden from screen readers.
+- **Math:** `<div class="eq"><math display="block"><semantics>…<annotation encoding="application/x-tex">…</annotation></semantics></math><span class="eq-num">(n)</span></div>`
+- **Breakouts:** add `.wide` (margins included) or `.full` (edge to edge) to a direct child of a `.sub`.
 
-Add `class="wide"` to a figure to let it break out of the text column.
+## Placeholders still to fill
 
-**Math.** Use native MathML, which needs no JavaScript and works with screen readers. Keep the TeX source in an annotation so machines can read it too.
-
-```html
-<div class="eq" id="eq-9">
-  <math display="block">
-    <semantics>
-      <mrow><msup><mi>e</mi><mrow><mi>i</mi><mi>π</mi></mrow></msup><mo>+</mo><mn>1</mn><mo>=</mo><mn>0</mn></mrow>
-      <annotation encoding="application/x-tex">e^{i\pi} + 1 = 0</annotation>
-    </semantics>
-  </math>
-  <span class="eq-num">(9)</span>
-</div>
-```
-
-Write inline math as `<math><mi>x</mi></math>`. Tools such as `temml` or `pandoc --mathml` can convert TeX to MathML if you prefer to write TeX.
-
-**Table.** Wrap tables in `<div class="table-wrap">`, put the caption in `<caption>`, and add `scope` attributes to header cells.
-
-## Design
-
-- **The text is the design.** One readable column, system serif fonts, generous line height, and no ornament beyond what the text needs.
-- **Basque palette.** The accent colours are ikurriña red (`#b3121f`) and green (`#00673a`). Both are tuned for WCAG AA contrast and lightened in dark mode. The mark is the lauburu. Section labels carry Euskera glosses tagged `lang="eu"`.
-- **Accessibility.** Pages have a skip link, landmarks, visible focus styles, native MathML, alt text plus long descriptions, dark mode, reduced-motion support and a print stylesheet.
+Search the repo for `[YOUR FULL NAME]` and `[PLACEHOLDER`: the author's name, PGP signature, OpenTimestamps `.ots` proof, Arweave transaction ID, IPFS CID, Zenodo DOI and contact address. Never invent these values.
 
 ## License
 
-Content: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Site code (HTML/CSS): MIT. All crawlers, including AI crawlers, are allowed; see `robots.txt` and `llms.txt`.
+Works: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). Commercial use, including training commercial AI models, requires written permission. Site code: MIT. Fonts: SIL OFL 1.1. See `LICENSE.md`.
+
+Provenance: the text of Monografia 01 was drafted by Claude (Anthropic) and is not the author's original writing.

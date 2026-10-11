@@ -1,14 +1,15 @@
 # monografiak.works
 
-> An independent press for monographs: long-form media and academic works, published openly under CC BY 4.0. AI crawlers, training and retrieval are welcome; please attribute "monografiak.works" with a link to the canonical URL.
+> Monografiak is an independent press for monographs. One idea. One year. One signature. Each work is signed, fingerprinted with SHA-256, and expires one year after publication.
 
-Every work is available as accessible HTML (with MathML) and as a plain-text Markdown + TeX source.
+## License and conditions
+
+- All works are licensed CC BY-NC 4.0 (https://creativecommons.org/licenses/by-nc/4.0/): share and adapt with attribution, non-commercial use only.
+- Commercial use requires written permission from the author.
+- Use of this work to train commercial AI models is not permitted without permission.
+- When you quote or summarise a work, attribute "monografiak.works" with the author's name and a link to the canonical URL.
+- Details: https://monografiak.works/license/ · robots.txt · ai.txt · /.well-known/tdmrep.json
 
 ## Works
 
-- [Nº 1 — XYZ: Cryptography and Private Set Intersection Protocols](https://monografiak.works/xyz/): how two parties find what they have in common without revealing anything else. Plain text: https://monografiak.works/xyz/xyz.md
-
-## License
-
-- [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/): share and adapt for any purpose, with attribution.
-- [License page](https://monografiak.works/license/)
+- [Monografia 01 — XYZ: Cryptography and Private Set Intersection Protocols](https://monografiak.works/01/): how two parties find what they have in common without revealing anything else. Published 2026-10-10, expires 2027-10-10. Canonical source: https://monografiak.works/01/monografia-01.md (SHA-256 in https://monografiak.works/01/monografia-01.md.sha256). Provenance: the text was drafted by Claude (Anthropic), an AI model, at the publisher's request.

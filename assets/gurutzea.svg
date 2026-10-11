@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <!-- Gurutzea: two thin lines crossing at right angles; only the dot is shared. Never rotated, never coloured. -->
+  <symbol id="g" viewBox="0 0 24 24">
+    <g fill="currentColor" stroke="currentColor">
+      <line x1="0" y1="12" x2="24" y2="12" stroke-width="1"/>
+      <line x1="12" y1="0" x2="12" y2="24" stroke-width="1"/>
+      <circle cx="12" cy="12" r="3.25" stroke="none"/>
+    </g>
+  </symbol>
+  <use href="#g" width="24" height="24" style="color:#16120F"/>
+</svg>

@@ -55,7 +55,7 @@ Body text is Source Serif 4, 19–21px, line-height 1.55, with a 66ch measure. T
 
 ## Placeholders still to fill
 
-Search the repo for `[YOUR FULL NAME]` and `[PLACEHOLDER`: the author's name, PGP signature, OpenTimestamps `.ots` proof, Arweave transaction ID, IPFS CID, Zenodo DOI and contact address. Never invent these values.
+See **[PLACEHOLDERS.md](PLACEHOLDERS.md)** for the ordered checklist of missing values (name, signature, timestamp, permanent copies, DOI, contact).
 
 ## License
 
